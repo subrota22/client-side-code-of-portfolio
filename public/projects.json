@@ -1,0 +1,52 @@
+[
+    { 
+        "projectId" : 1 , 
+        "projectImage" : "https://i.ibb.co/NLcqGpf/greenhompage.png" , 
+        "projectName" : "All green computers" ,
+        "description" : "I make this last month ago using React.js, Tailwind CSS, Node.js,and MongoDB. This project has three types of users seller , buyer, and admin.It has a lot of tools like react-router-dom, express, stripe, and so on."  ,
+        "authorName": "Subrota chandra sarker" ,
+        "authorImage" : "https://i.ibb.co/92jM9hd/author.png" , 
+        "liveWebsiteLink" : "https://pc-shop-only.firebaseapp.com/" ,
+        "clientRepositoryCode" : "https://github.com/subrota5618/computer-sell/tree/main/client" ,
+        "serverRepositoryCode" : "https://github.com/subrota5618/computer-sell/tree/main/server" 
+
+    } ,
+    { 
+        "projectId" : 2 , 
+        "projectImage" : "https://i.ibb.co/kcByC0m/shophomepage.png" , 
+        "projectName" : "Shop bd" ,
+        "description" : "I make this last two months ago using React.js and React bootstrap.This project simply orders the product and it will be removed fromthe order if the user clicks on the delete button and it will be adding the orders section if the user orders any product. It has a lot of tools like react-router-dom."  ,
+        "authorName": "Subrota chandra sarker" ,
+        "authorImage" : "https://i.ibb.co/92jM9hd/author.png" , 
+        "liveWebsiteLink" : "https://shopping-mall-3d07e.firebaseapp.com/" ,
+        "clientRepositoryCode" : "https://github.com/subrota5618/shopping-forever" ,
+        "serverRepositoryCode" : "" 
+
+    } ,
+    { 
+        "projectId" : 3 , 
+        "projectImage" : "https://i.ibb.co/NWQ74xw/playerhomepa.png" , 
+        "projectName" : "Make your team" ,
+        "description" : "I make this last four months ago using CSS, Bootstrap, and JavaScript.This project has just selected a player and has some mathematics operations to show the,selected player information like budget and name."  ,
+        "authorName": "Subrota chandra sarker" ,
+        "authorImage" : "https://i.ibb.co/92jM9hd/author.png" , 
+        "liveWebsiteLink" : "https://make-your-team-to-play-foot-ball.netlify.app/" ,
+        "clientRepositoryCode" : "https://github.com/subrota5618/world-cup" ,
+        "serverRepositoryCode" : "" 
+
+    } ,
+    { 
+        "projectId" : 4, 
+        "projectImage" : "https://i.ibb.co/TvzQTyJ/chathomepage2.png" , 
+        "projectName" : "Talk" ,
+        "description" : " I make this last two years ago using PHP, MYSQL, Bootstrap, HTML, and CSS3.  This project has a chat method although this site is not perfect it is a simple application of chat using PHP and MYSQL."  ,
+        "authorName": "Subrota chandra sarker" ,
+        "authorImage" : "https://i.ibb.co/92jM9hd/author.png" , 
+        "liveWebsiteLink" : "http://dc-chat-side.lovestoblog.com/" ,
+        "clientRepositoryCode" : "https://github.com/subrota5618/php-chat" ,
+        "serverRepositoryCode" : "" 
+        
+
+    } 
+    
+]

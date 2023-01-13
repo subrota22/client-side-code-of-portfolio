@@ -1,13 +1,116 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
+.navBg{
+  background-color: rgba(0, 0, 255, 0.2);
+  padding: 25px 0px;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+}
+.carouselItem{
+height: 455px;
+border-radius: 20px;
+}
+.skillText{
+animation: skillText infinite forwards 2s alternate;
+}
+@keyframes skillText {
+  from{ opacity: 1; } to{opacity: 0.5;}
+}
+.body{
+background-color: black;
+color: white;
+font-family: 'Raleway', sans-serif;
+}
+.body::-webkit-scrollbar{
+width: 12px;
+background-color: indigo;
+}
+.body::-webkit-scrollbar-thumb{
+background-color: darkslategray;
+border-radius: 15px;
+}
+.subrotaImage{
+transform:rotateX(-20deg) rotateY(-20deg);
+margin: 25px 10px;
+animation: subrotaPic infinite forwards 1s alternate;
+}
+@keyframes subrotaPic {
+  from{ box-shadow:  0 0 2px 4px rgba(0, 255, 0, 0.808) ; } to{box-shadow:  0 0 4px 8px rgb(10, 13, 233) ;}
+}
+.authorImage{
+height: 55px;
+width: 55px;
+border: 2px solid green;
+margin: 12px 0px;
+}
+.downloadIcon{
+animation: downloadIcon infinite  1s alternate-reverse;
+}
+@keyframes downloadIcon {
+  from{ transform: translateY(5px); } to{transform: translateY(-5px);}
+}
+.resumeDirection{
+  animation: resumeDirection infinite  1s alternate-reverse;
+}
+@keyframes resumeDirection {
+  from{ transform: translateY(5px); } to{transform: translateY(-5px);}
+}
+.myImage{
+  height: 250px;
+  margin-bottom: 25px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.aboutPage{
+height: 50%;
+width: 50%;
+margin: auto;
+margin-top: 45px;
+margin-bottom: 45px;
+
 }
+
+.cardBackground{
+background-color: rgba(0, 0, 0, 0.5);
+padding-bottom: 25px;
+border-radius: 25px;
+box-shadow: 0 0 2px 3px rgba(0, 255, 0, 0.5);
+}
+.cardBackground:hover{
+  box-shadow: 0 0 2px 3px rgba(251, 255, 0, 0.911);
+  transition-duration: 2s;
+  cursor: pointer;
+}
+.hiddenArrow{
+  display:none;
+}
+.showRightArrow:hover > .hiddenArrow {
+  display: block;
+}
+.showDetailsAnimation{
+animation: arrowSign infinite forwards alternate 1s;
+padding-left: 20px;
+visibility: hidden;
+}
+.hideBtn:hover > .showDetailsAnimation{visibility: visible; transition-duration: 2s;}
+@keyframes arrowSign {
+  0%{
+    transform: translateX(20px);
+  } 100%{
+    transform: translateX(-20px);
+  }
+}
+.sendSign{
+  visibility: hidden;
+  animation: sendMessage infinite forwards alternate 1s;
+}
+@keyframes sendMessage {
+  0%{
+    transform: translateX(10px);
+  } 100%{
+    transform: translateX(-20px);
+  }
+}
+.sendBtn:hover > .sendSign {visibility: visible;}

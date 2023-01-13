@@ -1,0 +1,138 @@
+   [
+    {
+    
+        "projectId" : 1, 
+        "image" : "https://i.ibb.co/23Yg6d7/greenadvertisment.png" ,
+         "projectName" : "All green computers", 
+        "projectTitle" : "All green computers home page" ,
+         "details" : "This is all green home page I make this home page to show the category and the advertising"
+      } ,
+      
+     {
+    
+        "projectId" : 1, 
+        "image" : "https://i.ibb.co/Yfzq7F0/greencategory.png" ,
+        "projectName" : "All green computers", 
+        "projectTitle" : "All green computers categories" ,
+         "details" : "All green computers categories will show the all products category"
+      } ,
+     {
+    
+        "projectId" : 1, 
+        "image" : "https://i.ibb.co/3WD2gGQ/greenorders.png" ,
+        "projectName" : "All green computers", 
+        "projectTitle" : "All green computers orders" ,
+         "details" : "All green computers order information that will store all product information."
+      } ,
+     {
+    
+        "projectId" : 1, 
+        "image" : "https://i.ibb.co/3WD2gGQ/greenorders.png" ,
+        "projectName" : "All green computers", 
+        "projectTitle" : "All green computers orders" ,
+         "details" : "All green computers wishlist that will store all wishlist information."
+      } ,
+ 
+      {
+    
+         "projectId" : 2, 
+         "image" : "https://ibb.co/89nJR1P" ,
+          "projectName" : "Shop bd " , 
+         "projectTitle" : "Shop bd orders section" ,
+          "details" : "Shop bd orders that will store all order data with cart interaction."
+       } ,
+       {
+        "projectId" : 2, 
+         "image" : "https://i.ibb.co/3SbRPCh/shopblogs.png" ,
+         "projectName" : "Shop bd " , 
+         "projectTitle" : "Shop bd orders blogs" ,
+          "details" : "Shop bd orders blogs to show the current update it will update continuously"
+       } 
+       ,
+
+        {
+       
+            "projectId" : 2, 
+            "image" : "https://i.ibb.co/4tZpZVH/shoplogin.png" ,
+            "projectName" : "Shop bd " , 
+            "projectTitle" : "Shop bd login section" ,
+             "details" : "Shop bd login with firebase to authenticate the users."
+          } ,
+          
+         {
+       
+            "projectId" : 2, 
+            "image" : "https://i.ibb.co/dmBDYVK/shopcontact.png" ,
+            "projectName" : "Shop bd" , 
+            "projectTitle" : "Shop bd contact section" ,
+             "details" : "Shop the bd contact section to contact the website owners."
+          } ,
+
+         {
+       
+            "projectId" : 3, 
+            "image" : "https://i.ibb.co/XZqjpwM/makeyourteamcalculation.png" ,
+             "projectName" : "Make your team" , 
+            "projectTitle" : "Make your team calculation" ,
+             "details" : "Make your team calculation to show the player's budget and cost for the total players."
+          } ,
+         {
+       
+            "projectId" : 3, 
+            "image" : "https://i.ibb.co/vXr5xfz/makeryourteamheader.png" ,
+            "projectName" : "Make your team" , 
+            "projectTitle" : "Make your team header" ,
+             "details" : "Make your team header section by HTML and CSS to show some player images."
+          } ,
+          {
+       
+             "projectId" : 3, 
+             "image" : "https://i.ibb.co/41CqBnT/makeryourteamplayers.png" ,
+             "projectName" : "Make your team" , 
+             "projectTitle" : "Make your team players section" ,
+              "details" : "Make your team players section show all player information."
+           } ,
+           {
+            "projectId" : 3, 
+             "image" : "https://i.ibb.co/0JvPnyg/makeyourteamafterselectedplayers.png" ,
+             "projectName" : "Make your team" , 
+             "projectTitle" : "Make your team after selected home page" ,
+              "details" : "Make your team after selecting the home page will be disabled all buttons for selecting no one can select the getter than five players."
+           } 
+           ,
+
+    {
+    
+        "projectId" : 4, 
+        "image" : "https://i.ibb.co/X8YhZQ1/chat1.png" ,
+         "projectName" : "Talk" , 
+        "projectTitle" : "Talk users" ,
+         "details" : "Talk all happy users they are realy happy users from talk chat."
+      } ,
+      
+     {
+    
+        "projectId" : 4, 
+        "image" : "https://i.ibb.co/N230Bfn/chat-application.png" ,
+        "projectName" : "Talk" , 
+        "projectTitle" : "The talk chats application" ,
+         "details" : "The talk chats application page this not fixed it will be changed in style and UI."
+      } ,
+     {
+    
+        "projectId" : 4, 
+        "image" : "https://i.ibb.co/P5GW7xg/chatlogin.png" ,
+         "projectName" : "Talk" , 
+        "projectTitle" : "Talk chat login page" ,
+         "details" : "The talk chat login page is a fully secure and safe login "
+      } ,
+     {
+    
+        "projectId" : 4, 
+        "image" : "https://i.ibb.co/6vXqTGP/chatuserupdate.png" ,
+         "projectName" : "Talk" , 
+        "projectTitle" : "Talk chat update page" ,
+         "details" : "Talk chat update page users can update their information this full-screen encrypted data will be stored in the database."
+      } 
+   
+]

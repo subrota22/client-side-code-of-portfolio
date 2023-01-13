@@ -1,0 +1,76 @@
+[
+    {
+        "id": 1,
+        "image": "https://i.ibb.co/ZBLvWzn/react.png",
+        "language": "React.js",
+        "experience": "I have 1 year plus experience in React.js.",
+        "integrate": "I mostly integrate React.js with MongoDB and API to get the data.",
+        "startingDate": "21/11/2021" 
+
+    },
+    {
+        "id": 2,
+        "image": "https://i.ibb.co/VWVsV0F/mongodb.png",
+        "language": "MongoDB",
+        "experience": "I have 1 year experience in MongoDB.",
+        "integrate": "I mostly integrate MongoDB with React.js  to get the data.",
+        "startingDate": "01/01/2022"
+    },
+    {
+        "id": 3,
+        "image": "https://i.ibb.co/yqCx1kz/node.jpg",
+        "language": "Node.js",
+        "experience": "I have 1 year experience in Node.js",
+        "integrate": "I mostly integrate React.js with MongoDB and API to get the data",
+        "startingDate": "08/01/2022"
+     
+    },
+    {
+        "id": 4,
+        "image": "https://i.ibb.co/88WWTKz/js.png",
+        "language": "JavaScript",
+        "experience": "I have 2 year plus experience in JavaScript.",
+        "integrate": "I mostly integrate React.js with MongoDB and API to get the data.",
+        "startingDate": "20/05/2020"
+    },
+    {
+        "id": 5,
+        "image": "https://i.ibb.co/6bchCVM/php.png",
+        "language": "PHP",
+        "experience": "I have 2 year plus experience in PHP",
+        "integrate": "I mostly integrate PHP with HTML5 to show data from SQL",
+        "startingDate": "21/11/2019"
+    },
+    {
+        "id": 6,
+        "image": "https://i.ibb.co/mvDdTGp/sql.jpg",
+        "language": "SQL",
+        "experience": "I have 2 year experience in SQL",
+        "integrate": "I mostly integrate React.js with MongoDB and API to get the data",
+        "startingDate": "21/05/2020"
+    },
+    {
+        "id": 7,
+        "image": "https://i.ibb.co/Bycq3mw/tailwind-css.jpg",
+        "language": "Tailwind CSS",
+        "experience": "I have 1 year experience in Tailwind CSS",
+        "integrate": "I mostly use Tailwind CSS to make the UI for large applications.",
+        "startingDate": "22/01/2022"
+    },
+    {
+        "id": 8,
+        "image": "https://i.ibb.co/QHGQ7W6/bootstrap.png",
+        "language": "Bootstrap",
+        "experience": "I have 3 year experience in Bootstrap",
+        "integrate": "I mostly use Bootstrap to make the UI for large applications. Specialty when needing to use react Bootstrap or to show data from SQL using PHP.",
+        "startingDate": "21/03/2019"
+    },
+    {
+        "id": 9,
+        "image": "https://i.ibb.co/DfxWYXt/html-css.jpg",
+        "language": "CSS & HTML",
+        "experience": "I have 3 year plus experience in CSS and HTML",
+        "integrate": "I mostly use HTML to show the foundation of UI and CSS for only Front-end or animation during.",
+        "startingDate": "21/11/2019"
+    }
+]
