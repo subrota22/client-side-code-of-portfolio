@@ -1,14 +1,56 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Helmet } from 'react-helmet';
 import { BiSend } from 'react-icons/bi';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { AuthProvider } from '../../UserContext/UserContext';
 
 const Refferall = () => {
+    const {user} = useContext(AuthProvider) ;
+    const naviagate = useNavigate() ;
+    const submitReferenceData = (event) => {
+     event.preventDefault() ;
+     const name= event.target.name.value.trim() ;
+     const email= event.target.email.value.trim() ;
+     const phone_number= event.target.phone_number.value.trim() ;
+     const organization= event.target.organization.value.trim() ;
+     const reference= event.target.reference.value.trim() ;
+     const referenceSubmitedData = {
+        name:name ,
+        email:email ,
+        image:user?.photoURL,
+        phone_number:phone_number ,
+        organization:organization ,
+        referenceMessage : reference ,
+        referenceDate :  new Date().toLocaleDateString() ,
+        referenceTime: new Date().toLocaleTimeString() ,
+     }
+    console.log(name);
+    fetch(`http://localhost:3025/references` , {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            authentication: `Bearer ${localStorage.getItem("portfolio-token")} `
+        },
+        body: JSON.stringify(referenceSubmitedData)
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data?.acknowledged) {
+            toast.success("You have given references successfully !!");
+            naviagate("/") ;
+        } else if(data.message === true ){
+            toast.success("You had given references !!");
+            naviagate("/referral") ;
+        }
+    })
+    }
     return (
         <>
             <Helmet><title>Reference</title></Helmet>
           <div className="my-5">
           <div className="bg-info text-white fs-2 text-center w-50 m-auto text-uppercase fw-bolder py-3 ">Give reference</div>
-    <form method="post" className="was-validated w-50 m-auto mb-5
+    <form  onSubmit={submitReferenceData} className="was-validated w-50 m-auto mb-5
      bg-dark p-5 rounded-0 text-white h-auto" data-aos="zoom-in" data-aos-anchor-placement="center-center "
         data-aos-duration="2000">
         <div className="mb-3">
@@ -47,7 +89,7 @@ const Refferall = () => {
                 required></textarea>
         </div>
         <div>
-            <button className="btn btn-outline-primaryt text-white w-100 fw-bold  pt-2 sendBtn">
+            <button className="btn btn-outline-primary text-white w-100 fw-bold  pt-2 sendBtn">
                 Send reference
             <BiSend className='float-end fs-2 sendSign'></BiSend>
             </button>

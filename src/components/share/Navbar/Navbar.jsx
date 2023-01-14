@@ -1,6 +1,16 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { AuthProvider } from '../../UserContext/UserContext';
 const Navbar = () => {
+    const {user , signOutUser , setUserData} = useContext(AuthProvider) ;
+    const naviagate = useNavigate() ;
+    const logout = ()=>{
+        signOutUser() ;
+        setUserData({}) ;
+        toast.success("Your account is log out successfully !! ") ;
+        naviagate("/") ;
+    }
     return (
         <>
  
@@ -37,6 +47,19 @@ const Navbar = () => {
                                 </NavLink>
                             </li>
 
+                         {
+                          !user?.uid &&  <>
+                               <li className="nav-item">
+                                <NavLink  className="nav-link text-white" to="/register"> Register
+                                </NavLink>
+                            </li>
+                            <li className="nav-item">
+                                <NavLink  className="nav-link text-white" to="/login">Login
+                                </NavLink>
+                            </li>
+                            </>
+                         }
+
                             <li className="nav-item dropdown">
                                 <a className="nav-link text-white dropdown-toggle" href="#dropdown"  rel='noreferrer' role="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
@@ -47,15 +70,34 @@ const Navbar = () => {
                                             href="http://subrotachandra.lovestoblog.com/login.html">PHP website</a></li>
                                     <li><NavLink className="dropdown-item"  to="/about">About me </NavLink>
                                     </li>
-                                    <li>
-                                        <hr className="dropdown-divider"/>
-                                    </li>
+                               
                                     <li>
                                     <NavLink className="dropdown-item"  to="/privacy">Privacy policy </NavLink>
                                             </li>
                                             <li>
                                     <NavLink className="dropdown-item"  to="/blogs"> Blogs </NavLink>
                                             </li>
+                                            <li>
+                                    <NavLink className="dropdown-item"  to="/referral"> Referral </NavLink>
+                                            </li>
+                                            <li>
+                                        <hr className="dropdown-divider"/>
+                                    </li>
+                                            <li>
+                                      <button className="dropdown-item btn btn-outline-info" onClick={logout}>  Log out  </button>
+                                            </li>
+                                            {
+                                             !user?.uid &&   <>
+                                                   <li className="nav-item">
+                                <NavLink  className="nav-link" to="/register"> Register
+                                </NavLink>
+                            </li>
+                            <li className="nav-item">
+                                <NavLink  className="nav-link" to="/login">Login
+                                </NavLink>
+                            </li>
+                                                </>
+                                            }
                                 </ul>
                             </li>
                         </ul>

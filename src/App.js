@@ -2,7 +2,8 @@
 import './App.css';
 import { RouterProvider } from 'react-router-dom';
 import routes from './components/routes/routes';
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useCallback } from "react";
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
@@ -22,6 +23,7 @@ const particlesLoaded = useCallback(async container => {
 }, []);
   return (
     <>
+        <ToastContainer />
      <Particles
             id="tsparticles"
             init={particlesInit}

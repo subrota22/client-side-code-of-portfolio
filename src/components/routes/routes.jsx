@@ -8,9 +8,14 @@ import Blogs from '../pages/Blogs/Blogs';
 import Contact from '../pages/Contact/Contact';
 import Details from '../pages/Details/Details';
 import Home from '../pages/Home/Home';
+import Login from '../pages/Login/Login';
 import PageError from '../pages/PageError/PageError';
 import PrivacyPolicy from '../pages/PrivacyPolicy/PrivacyPolicy';
+import ReferenceData from '../pages/ReferenceData/ReferenceData';
 import Refferall from '../pages/Refferall/Refferall';
+import Register from '../pages/Register/Register';
+import UpdateProject from '../pages/UpdateCategories/UpdateProject/UpdateProject';
+import UpdateSection from '../pages/UpdateCategories/UpdateSection/UpdateSection';
 const routes =  createBrowserRouter([
 {
     path:"/" , element : <MainLayout/> , children:[
@@ -19,7 +24,15 @@ const routes =  createBrowserRouter([
         },
         {
             path:"/details/:id" ,
-            loader: async ({params}) => fetch(`https://portfolio-lake-nu-82.vercel.app/details/${params.id}`) , 
+            loader: async ({params}) => 
+            fetch(`http://localhost:3025/details/${params.id}` , {
+                method:"GET" , 
+               headers:{
+                authentication: `Bearer ${localStorage.getItem("portfolio-token")} `
+               }
+            })
+            .then(res => res.json())
+            .then(data => data ) , 
             element:<Details></Details>
         } ,
         {
@@ -49,8 +62,51 @@ const routes =  createBrowserRouter([
         path:"/add-new-project"  , element:<AddNewProject></AddNewProject>
         },
         {
-            path:"/add-new-project-section"  , element:<AddNewSection></AddNewSection>
+            path:"/register"  , element:<Register></Register>
             },
+            {
+            path:"/login"  , element:<Login></Login>
+            },
+        {
+            path:"/add-new-project-section/:id"  ,
+            loader: ({params}) => 
+            fetch(`http://localhost:3025/projects/${params.id}` , {
+               method:"GET" , 
+               headers:{
+                authentication: `Bearer ${localStorage.getItem("portfolio-token")} `
+               }
+            }).then(res => res.json())
+            .then(data => data )
+            ,element:<AddNewSection></AddNewSection>
+            },
+            {
+              path:"/referral" , element:<ReferenceData></ReferenceData>
+            } ,
+            {
+                path:"/edit-project/:id" ,
+                loader:({params}) => 
+                fetch(`http://localhost:3025/projects/${params.id}` , {
+                    method:"GET" , 
+                    headers:{
+                     authentication: `Bearer ${localStorage.getItem("portfolio-token")} `
+                    }
+                 }).then(res => res.json())
+                 .then(data => data )
+                ,element:<UpdateProject></UpdateProject>
+              } ,
+              
+            {
+                path:"/edit-section/:id" ,
+                loader:({params}) => 
+                fetch(`http://localhost:3025/projectSections/${params.id}` , {
+                    method:"GET" , 
+                    headers:{
+                     authentication: `Bearer ${localStorage.getItem("portfolio-token")} `
+                    }
+                 }).then(res => res.json())
+                 .then(data => data )
+                ,element:<UpdateSection></UpdateSection>
+              } ,
         {
             path:"*" , element:<PageError></PageError>
         }

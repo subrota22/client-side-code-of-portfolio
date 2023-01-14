@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
+import { AuthProvider } from '../../../UserContext/UserContext';
 
 const HeadSection = () => {
+    const {user} = useContext(AuthProvider) ;
     return (
         <>
  
@@ -23,7 +25,9 @@ const HeadSection = () => {
      </div>
  </div>   
  
-        <div className="container">
+{
+      user?.email ===  "subrota45278@gmail.com" && <>
+  <div className="container">
   
   <div className="d-flex flex-column m-auto">
   <div className="text-center my-2 ">
@@ -34,7 +38,9 @@ const HeadSection = () => {
       </div>
  
      </div>
- </div>    
+ </div>  
+    </>
+}  
         </>
     );
 };
