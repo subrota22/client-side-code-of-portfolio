@@ -2,7 +2,7 @@ export const authUser = (email) => {
 const authEmail = {
     email:email , 
 }
-fetch("http://localhost:3025/jwt" , {
+fetch("https://subrota-server.vercel.app/jwt" , {
 method:"POST" , 
 headers:{
 "Content-Type" : "application/json"

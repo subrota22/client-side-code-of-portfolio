@@ -11,13 +11,13 @@ const AdminRouter = ({children}) => {
     // console.log(userData);
     const [pageLoad , setPageLoad] = useState(true) ;
     React.useEffect(() => {
-        fetch(`http://localhost:3025/user/${user?.email}`,{
+        fetch(`https://subrota-server.vercel.app/user/${user?.email}`,{
             headers: {
                 authentication: `Bearer ${localStorage.getItem("portfolio-token")} `
             }
         })
             .then(res => {
-                
+
                 if(res.status === 403 ) {
                     toast.warning("You do have not access to these components.");
                 } else{

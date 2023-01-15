@@ -41,7 +41,7 @@ console.log(sectionData);
             .then(data => {
                 const projectImage = data.data?.display_url ? data.data?.display_url : sectionData?.projectImage;
 
-                fetch(`http://localhost:3025/sectionUpdate/${info._id}`, {
+                fetch(`https://subrota-server.vercel.app/sectionUpdate/${info._id}`, {
                     method: "PUT",
                     headers: {
                         "Content-Type": "application/json",

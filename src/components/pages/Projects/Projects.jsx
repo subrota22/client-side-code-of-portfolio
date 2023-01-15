@@ -29,7 +29,7 @@ const setData = (reciveData) => {
     //delete project section
 
     const deleteProject = (id) => {
-            fetch(`http://localhost:3025/projects/${id}`, {
+            fetch(`https://subrota-server.vercel.app/projects/${id}`, {
                 method: "DELETE",
                 headers: {
                     authentication: `Bearer ${localStorage.getItem("portfolio-token")} `

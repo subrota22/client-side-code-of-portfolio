@@ -40,7 +40,7 @@ const UpdateProject = () => {
             .then(data => {
                 const projectImage = data.data?.display_url ? data.data?.display_url : projectsData?.projectImage;
 
-                fetch(`http://localhost:3025/projects/${info._id}`, {
+                fetch(`https://subrota-server.vercel.app/projects/${info._id}`, {
                     method: "PUT",
                     headers: {
                         "Content-Type": "application/json",

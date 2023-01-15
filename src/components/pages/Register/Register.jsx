@@ -64,7 +64,7 @@ const Register = () => {
                             phoneNumber: phone_number,
                             companyName: company_name,
                         }
-                        fetch("http://localhost:3025/users", {
+                        fetch("https://subrota-server.vercel.app/users", {
                             method: "POST",
                             headers: {
                             "Content-Type": "application/json",
