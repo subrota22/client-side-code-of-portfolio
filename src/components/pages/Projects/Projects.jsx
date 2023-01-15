@@ -6,11 +6,15 @@ import { NavLink } from 'react-router-dom';
 import { Typewriter } from 'react-simple-typewriter';
 import HashLoader from 'react-spinners/HashLoader';
 import { toast } from 'react-toastify';
+import DeleteConformation from '../../share/DeleteConformation/DeleteConformation';
 import { AuthProvider } from '../../UserContext/UserContext';
+import "./Project.css" ;
 const Projects = () => {
     const { user } = useContext(AuthProvider);
     const [projects, setProjects] = useState([]);
     const [pageLoad , setPageLoad] = useState(true) ;
+    const [modalData , setmodalData] = useState() ;
+    const [showModal , setShowModal] = useState(false) ;
     React.useEffect(() => {
         fetch("https://portfolio-lake-nu-82.vercel.app/projects")
             .then(res => res.json())
@@ -18,32 +22,37 @@ const Projects = () => {
             .catch(error => console.log(error))
     }, []);
 
+const setData = (reciveData) => {
+ setmodalData(reciveData) ;
+ setShowModal(true) ;
+}
     //delete project section
 
     const deleteProject = (id) => {
-
-        const confirmation = window.confirm("Do you want to delete this data?");
-        if (confirmation) {
-
             fetch(`http://localhost:3025/projects/${id}`, {
                 method: "DELETE",
                 headers: {
                     authentication: `Bearer ${localStorage.getItem("portfolio-token")} `
                 }
             })
-                .then(res => res.json())
+                .then(res =>  {
+
+                    if (res.status === 403) {
+                        toast.warning("  😩 😩 You do have not access to delete this data. 😩 😩 ");
+                    } else {
+                        return res.json();
+                    }
+                })
                 .then(data => {
-                    if (data.deletedCount > 0) {
-                        toast.success("Your data is deleted !! ");
+                    if (data?.result?.deletedCount  > 0) {
                         const restData = projects.filter(data => data._id !== id);
                         setProjects(restData);
+                    }  ;
+                    if(data?.deleteAllSection?.deletedCount  > 0){
+                        toast.success(" 😀😀😀😀 Your project and all project secetions is deleted successfully 😀😀😀😀")
                     }
                 });
-        } else {
-            toast.info("Your data is safe now ");
-        }
     }
-
     if(pageLoad){
         return <>
         <div className='text-center' style={{ margin:"20% 45%"}}>
@@ -53,6 +62,14 @@ const Projects = () => {
     }
     return (
         <>
+
+{  showModal  && 
+<DeleteConformation
+ modalData={modalData}
+ setShowModal={setShowModal}
+deleteProject={deleteProject}
+>
+</DeleteConformation>}
 
             <div className="container">
 
@@ -77,9 +94,12 @@ const Projects = () => {
                                 <div className="cardBackground h-100" >
                                     <img src={project?.projectImage} className="card-img-top myImage" alt="project" />
                                     <div className="card-body p-3 text-white">
-                                        <h5 className="card-title"> <span className='text-info'>Project name:</span> {project?.projectName} </h5>
-                                        <p className="card-text"><span className='text-info'> Project description: </span>  {project?.description}</p>
+                                        <h5 className="card-title"> <span className='text-info fw-bold'>Project name:</span> {project?.projectName} </h5>
+                                        <p className="card-text"><span className='text-info fw-bold'> Project description: </span>  
+                                        {project?.description?.length > 200 ? project?.description.slice(0 , 200) + " ..." :project?.description
+                                         }</p>
                                         <div className='text-info'>
+                                            <p className='text-info fs-5 fw-bolder'> Project links </p>
                                            {
                                              project?.clientRepositoryCode ?
                                              <a href={project?.clientRepositoryCode} target="_blank" rel='noreferrer' className='my-3 showRightArrow py-3 mx-5 text-white text-decoration-none '> Client side code repository link  <i className="fa-solid fa-arrow-right hiddenArrow"></i> </a>
@@ -110,10 +130,9 @@ const Projects = () => {
                                              <div className='text-center mt-5'>
                                         <div>
                                         {
-                                            user?.uid ?
-                                                <NavLink to={`/details/${project?.projectId ? project?.projectId : project?._id}`} className="btn btn-outline-primary w-auto mx-5 py-2 px-4 hideBtn" >Show details <i className="fa-solid fa-arrow-right showDetailsAnimation"></i> </NavLink>
-                                                : undefined
-
+                                       
+                                        <NavLink to={`/details/${project?.projectId ? project?.projectId : project?._id}`} className="btn btn-outline-primary w-auto mx-5 py-2 px-4 hideBtn" >Show details <i className="fa-solid fa-arrow-right showDetailsAnimation"></i> </NavLink>
+                                      
                                         }
                                         </div>
                                         
@@ -135,16 +154,16 @@ const Projects = () => {
                                          <div>
                                          {
                                                 user?.email === "subrota45278@gmail.com" &&
-                                                <BsFillTrash2Fill className='text-danger fs-3 fw-bold'
-                                                    onClick={() => deleteProject(project?._id)}></BsFillTrash2Fill>
+                                                <BsFillTrash2Fill className='text-danger fs-3 fw-bold' title={`Click on this icon to delete your  ${project?.projectName} project data`}
+                                                    onClick={() => setData(project)}></BsFillTrash2Fill>
 
                                             }
                                          </div>
                                          <div>
                                          {
                                                 user?.email === "subrota45278@gmail.com" &&
-                                           <NavLink to={`/edit-project/${project?._id}`}>
-                                                 <BiEditAlt className='text-danger fs-3 fw-bold'
+                                           <NavLink to={`/edit-project/${project?._id}`} title={`Click on this icon to update your  ${project?.projectName} project data`}>
+                                                 <BiEditAlt className='text-success fs-3 fw-bold'
                                                     ></BiEditAlt>
                                            </NavLink>
 

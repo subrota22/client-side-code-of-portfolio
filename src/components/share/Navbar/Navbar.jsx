@@ -14,19 +14,21 @@ const Navbar = () => {
     return (
         <>
  
-            <nav className="navbar navbar-expand-lg navBg">
+            <nav className="navbar navbar-expand-lg navBg text-center">
+            <NavLink className="navbar-brand text-uppercase fs-5 text-white mx-3" to="/">
+                       <img src="https://i.ibb.co/DLcFkNd/mylogo.png" alt="logo" className='logo img-fluid' />
+                    </NavLink>
                 <div className="container-fluid">
-                    <a className="navbar-brand text-uppercase text-white" href="/">
-                        Portfolio Of Subrota Chandra 
-                    </a>
+              
                     <button className="navbar-toggler text-white bg-success" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon text-white "></span>
                     </button>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
-                            <li className="nav-item">
+                        <ul className="navbar-nav ms-auto ">
+        
+                           <li className="nav-item">
                                 <NavLink className="nav-link text-white active" aria-current="page" to="/">Home</NavLink>
                             </li>
 
@@ -34,19 +36,8 @@ const Navbar = () => {
                                 <a className="nav-link text-white" target="_blank" rel='noreferrer'
                                     href="https://shopping-mall-forever.netlify.app/">React.js website</a>
                             </li>
-                            <li className="nav-item">
-                                <a className="nav-link text-white" target="_blank" rel='noreferrer'
-                                    href="https://green-computers-1a8a8.firebaseapp.com/">Node.js website</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link text-white" target="_blank" rel='noreferrer'
-                                    href="https://make-your-team-to-play-foot-ball.netlify.app/">JavaScript website</a>
-                            </li>
-                            <li className="nav-item">
-                                <NavLink  className="nav-link text-white" to="/contact">Contact me
-                                </NavLink>
-                            </li>
-
+                  
+        
                          {
                           !user?.uid &&  <>
                                <li className="nav-item">
@@ -59,11 +50,15 @@ const Navbar = () => {
                             </li>
                             </>
                          }
-
-                            <li className="nav-item dropdown">
+                                      <li className="nav-item">
+                                <NavLink  className="nav-link text-white" to="/contact">
+                                    Contact me
+                                </NavLink>
+                            </li>
+                              <li className="nav-item dropdown">
                                 <a className="nav-link text-white dropdown-toggle" href="#dropdown"  rel='noreferrer' role="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
-                                    More link
+                                   Show more
                                 </a>
                                 <ul className="dropdown-menu">
                                     <li><a className="dropdown-item" target="_blank" rel='noreferrer'
@@ -80,12 +75,23 @@ const Navbar = () => {
                                             <li>
                                     <NavLink className="dropdown-item"  to="/referral"> Referral </NavLink>
                                             </li>
+                                            <li className="dropdown-item">
+                                <a className="dropdown-link  text-decoration-none text-dark" target="_blank" rel='noreferrer'
+                                    href="https://green-computers-1a8a8.firebaseapp.com/">Node.js website</a>
+                            </li>
+                            <li className="dropdown-item">
+                                <a className="dropdown-link text-decoration-none text-dark" target="_blank" rel='noreferrer'
+                                    href="https://make-your-team-to-play-foot-ball.netlify.app/">JavaScript website</a>
+                            </li>
+                                            <li>
+                                 <NavLink  className="dropdown-item " to="/certifications"> 
+                                Certifications
+                                </NavLink>
+                                </li>
                                             <li>
                                         <hr className="dropdown-divider"/>
                                     </li>
-                                            <li>
-                                      <button className="dropdown-item btn btn-outline-info" onClick={logout}>  Log out  </button>
-                                            </li>
+                                  
                                             {
                                              !user?.uid &&   <>
                                                    <li className="nav-item">
@@ -96,9 +102,44 @@ const Navbar = () => {
                                 <NavLink  className="nav-link" to="/login">Login
                                 </NavLink>
                             </li>
-                                                </>
+
+                            </>
                                             }
+                          
+                                <li>
+                                      <div className="dropdown-item btn btn-outline-info" onClick={() => logout()}>  
+                                      <button className="btn btn-danger w-100 py-2">
+                                      Log out 
+                                      </button>
+                                       </div>
+                                            </li>
+                                            
+                                          
                                 </ul>
+                            </li>
+
+               
+
+                            <li className="nav-item">
+                            {
+                          user?.uid &&  <>
+                             
+                                <NavLink  className="nav-link text-white" to="/profile"> 
+                                <img src={user?.photoURL} alt="user" className='rounded-circle ms-5'
+                                 style={{height:"75px" , width:"80px" , border:"3px solid lime" , marginTop:"-10px"}} 
+                                 title={user?.displayName}
+                                 
+                                 />
+                                 <div style={{height:"12px" , width:"12px" , 
+                                 border:"2px solid lime" , marginTop:"20%" , borderRadius:"50%" ,
+                                 backgroundColor:"black" }} className="d-none float-end mx-2 d-md-block" >
+
+                                 </div>
+                                </NavLink>
+                         
+                
+                            </>
+                         }
                             </li>
                         </ul>
                     </div>

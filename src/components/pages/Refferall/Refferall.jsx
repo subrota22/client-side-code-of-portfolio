@@ -25,8 +25,8 @@ const Refferall = () => {
         referenceDate :  new Date().toLocaleDateString() ,
         referenceTime: new Date().toLocaleTimeString() ,
      }
-    console.log(name);
-    fetch(`http://localhost:3025/references` , {
+    // console.log(name);
+    fetch(`https://subrota-server.vercel.app/references` , {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -34,7 +34,14 @@ const Refferall = () => {
         },
         body: JSON.stringify(referenceSubmitedData)
     })
-    .then(res => res.json())
+    .then(res =>  {
+
+        if (res.status === 403) {
+            toast.warning("  😩 😩 You do have not access to reference right now. 😩 😩 ");
+        } else {
+            return res.json();
+        }
+    })
     .then(data => {
         if(data?.acknowledged) {
             toast.success("You have given references successfully !!");
@@ -44,6 +51,10 @@ const Refferall = () => {
             naviagate("/referral") ;
         }
     })
+    } ;
+    if(!user?.emailVerified){
+        naviagate("/profile") ;
+        toast.info("You need to login and verify your email to give a reference.");
     }
     return (
         <>

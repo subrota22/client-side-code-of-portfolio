@@ -5,58 +5,73 @@ import { Helmet } from "react-helmet";
 import FadeLoader from "react-spinners/FadeLoader";
 import Wave from 'react-wavify'
 import { BsFillTrash2Fill } from 'react-icons/bs';
-import { toast } from 'react-toastify';
 import { AuthProvider } from '../../UserContext/UserContext';
 import { BiEditAlt } from 'react-icons/bi';
+import DeleteConformation from '../../share/DeleteConformation/DeleteConformation';
+import { toast } from 'react-toastify';
 const Details = () => {
     const [pageLoad, setPageLoad] = useState(true)
     const detailsInfo = useLoaderData();
     const [detailsData, setDetailsData] = useState(detailsInfo);
-
+    const [modalData , setmodalData] = useState() ;
+    const [showModal , setShowModal] = useState(false) ;
     const { user } = useContext(AuthProvider);
 
-    const [details, setDetails] = useState([]);
-    console.log("==>", details);
     React.useEffect(() => {
-        // if(!detailsInfo[0].projectId) return ;
-        fetch(`https://portfolio-lake-nu-82.vercel.app/details/${detailsInfo[0].projectId}`)
+        if(!detailsInfo[0]?.projectId) return ;
+        fetch(`https://portfolio-lake-nu-82.vercel.app/details/${detailsInfo[0]?.projectId}`)
             .then(res => res.json())
-            .then(data => { setDetails(data); setPageLoad(false) });
+            .then(data => { setPageLoad(false) });
     }, [detailsInfo]);
 
     if (pageLoad) {
         return <div style={{ margin: "20% 50%" }}><FadeLoader color="#36d7b7" /></div>
     }
 
+    const setData = (reciveData) => {
+        setmodalData(reciveData) ;
+        setShowModal(true) ;
+       }
+
+
     //delete project section
 
     const deleteProjectSection = (id) => {
-
-        const confirmation = window.confirm("Do you want to delete this data?");
-        if (confirmation) {
-
+        // console.log(id);
             fetch(`http://localhost:3025/details/${id}`, {
                 method: "DELETE",
                 headers: {
                     authentication: `Bearer ${localStorage.getItem("portfolio-token")} `
                 }
             })
-                .then(res => res.json())
+                .then(res => {
+
+                    if (res.status === 403) {
+                        toast.warning("  😩 😩 You do have not access to delete this data. 😩 😩 ");
+                    } else {
+                        return res.json();
+                    }
+                })
                 .then(data => {
                     if (data.deletedCount > 0) {
-                        toast.success("Your data is deleted !! ");
                         const restData = detailsData.filter(data => data._id !== id);
                         setDetailsData(restData);
                     }
                 });
-        } else {
-            toast.info("Your data is safe now ");
-        }
     }
 
     return (
         <>
             <Helmet> <title> Project details </title></Helmet>
+
+            {  showModal  && 
+<DeleteConformation
+ modalData={modalData}
+ setShowModal={setShowModal}
+deleteProject={deleteProjectSection}
+>
+</DeleteConformation>}
+
             <div>
 
                 {
@@ -96,10 +111,8 @@ const Details = () => {
 
                 <div >
                     {detailsInfo.length === 0 || !detailsInfo ? <>
-                        <p className='text-danger fs-3 fw-bolder text-center my-2'>Project details not found</p>
-                        <div className="text-center">
-                            <NavLink to={"/"} className="btn btn-outline-danger w-25 my-2">Go back home</NavLink>
-                        </div>
+                        <p className='text-danger fs-3 fw-bolder text-center my-2'>Project details not found coming soon...</p>
+                
                     </> :
 
                         <div className="container">
@@ -121,16 +134,16 @@ const Details = () => {
                                                         <div>
                                                             {
                                                                 user?.email === "subrota45278@gmail.com" &&
-                                                                <BsFillTrash2Fill className='text-danger fs-3 fw-bold'
-                                                                    onClick={() => deleteProjectSection(detail?._id)}></BsFillTrash2Fill>
+                                                                <BsFillTrash2Fill className='text-danger fs-3 fw-bold' title={`Click on this icon to delete your  ${detail?.projectName} project data`}
+                                                                    onClick={() => setData(detail)}></BsFillTrash2Fill>
 
                                                             }
                                                         </div>
                                                         <div>
                                                             {
                                                                 user?.email === "subrota45278@gmail.com" &&
-                                                                <NavLink to={`/edit-section/${detail?._id}`}>
-                                                                    <BiEditAlt className='text-danger fs-3 fw-bold'
+                                                                <NavLink to={`/edit-section/${detail?._id}`} title={`Click on this icon to update your  ${detail?.projectName} project data`}>
+                                                                    <BiEditAlt className='text-success fs-3 fw-bold'
                                                                     ></BiEditAlt>
                                                                 </NavLink>
 

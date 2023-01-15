@@ -77,7 +77,7 @@ console.log(sectionData);
 
     return (
         <>
-            <Helmet> <title> Update project  </title></Helmet>
+            <Helmet> <title> Update project section </title></Helmet>
             <form autoComplete='off' onSubmit={handleSubmit} className='p-5 my-4 mx-auto bg-dark p-4' style={{ width: "50%" }}>
                 <h2 className='fs-3 fw-bolder text-uppercase text-white text-center my-4'> Update {sectionData?.projectName ?
                     info?.projectName : "project name not found"}   </h2>

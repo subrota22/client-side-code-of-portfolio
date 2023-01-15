@@ -60,3 +60,16 @@
     transform: rotate(380deg) scale(1)
   }
 }
+
+.logo{
+animation: logoSpin infinite 6s forwards linear;
+height: 40%;
+width: 40%;
+}
+@keyframes logoSpin {
+ 0%{
+  transform:rotate(0deg);
+ }  100%{
+  transform:rotate(360deg);
+ } 
+}

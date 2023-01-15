@@ -1,9 +1,7 @@
 import React, { useCallback, useContext, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Helmet } from 'react-helmet';
-import {useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-
 import ClipLoader from "react-spinners/ClipLoader";
 import { BsCloudUploadFill } from "react-icons/bs";
 import { AuthProvider } from '../../../UserContext/UserContext';
@@ -13,8 +11,6 @@ const AddNewProject = () => {
     const [registerLoad, setRegisterLoad] = useState(false);
     const {user} = useContext(AuthProvider) ;
    
-    const naviagate = useNavigate();
-
     const onDrop = useCallback(acceptedFiles => {
         // Do something with the files
         setFileName(acceptedFiles[0]);
@@ -55,7 +51,7 @@ const AddNewProject = () => {
                             publishDate: new Date().toLocaleDateString() ,
 
                         }
-                        fetch("http://localhost:3025/projects", {
+                        fetch("https://subrota-server.vercel.app/projects", {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json",
@@ -63,12 +59,20 @@ const AddNewProject = () => {
                             },
                             body: JSON.stringify(postData)
                         })
-                            .then(res => res.json())
+                            .then(res =>  {
+
+                                if (res.status === 403) {
+                                    toast.warning("  😩 😩 You do have not access to manipulate this data. 😩 😩 ");
+                                } else {
+                                    return res.json();
+                                }
+                            })
                             .then(data => {
                                 if (data.acknowledged) {
                                     toast.success("Congrasulations your new project added sucessfully !! ");
                                     setRegisterLoad(false);
-                                    naviagate("/") ;
+                                    event.target.reset() ;
+                                    setFileName({}) ;
                                 }
                             })
                     })
@@ -109,7 +113,10 @@ const AddNewProject = () => {
                     <div {...getRootProps()} className="rounded-2 text-center p-5 my-3" style={{ border: "2px solid lime", cursor: "pointer" }}>
                         <input {...getInputProps()} />
                         {
-                            fileStatus ? <p > Your file is selected file name is : {fileName.name} </p> : <>
+                                    fileStatus ? <div> { fileName?.name && <p>  Your file is selected file name is : </p> }  {fileName?.name ? fileName?.name :<>
+                                        <p> File name not found  please select another file</p>
+                                        <BsCloudUploadFill className='fs-bolder fs-3 my-2 text-info'></BsCloudUploadFill>
+                                        </>} </div> : <>
                                 {
                                     isDragActive ?
                                         <ClipLoader color='white' className='p-3 text-center'></ClipLoader> :

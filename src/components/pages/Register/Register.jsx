@@ -5,8 +5,8 @@ import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthProvider } from '../../UserContext/UserContext';
 import ClipLoader from "react-spinners/ClipLoader";
-import { authUser } from '../../authUser/authUser';
 import { BsCloudUploadFill } from "react-icons/bs";
+import { authUser } from '../../authUser/authUser';
 const Register = () => {
     const [fileName, setFileName] = useState({});
     const [fileStatus, setFileStatus] = useState(false);
@@ -56,7 +56,7 @@ const Register = () => {
                 createNewUser(email, password)
                     .then((result) => {
                         authUser(result.user?.email);
-                        const imageLink = data.data.display_url;
+                        const imageLink = data.data?.display_url;
                         const postData = {
                             name: name,
                             email: email,
@@ -67,8 +67,7 @@ const Register = () => {
                         fetch("http://localhost:3025/users", {
                             method: "POST",
                             headers: {
-                                "Content-Type": "application/json",
-                                authentication: `Bearer ${localStorage.getItem("portfolio-token")} `
+                            "Content-Type": "application/json",
                             },
                             body: JSON.stringify(postData)
                         })
@@ -76,7 +75,8 @@ const Register = () => {
                             .then(data => {
                                 if (data.acknowledged) {
                                     toast.success("Congrasulations your account created sucessfully !! ");
-                                    setRegisterLoad(false);
+                                    setRegisterLoad(false)
+                                    //verify email
                                     sendEmailVerify()
                                         .then(() => {
                                             toast.info("Please check your inbox or spam to verify your email address.");
@@ -169,7 +169,7 @@ const Register = () => {
                                         <ClipLoader color='white' className='p-3 text-center'></ClipLoader> :
                                         <>
                                             <BsCloudUploadFill className='fs-bolder fs-3 my-2 text-info'></BsCloudUploadFill>
-                                            <p>Drop the post image here ...</p>
+                                            <p>Drop the profile image here ...</p>
 
                                         </>
                                 }

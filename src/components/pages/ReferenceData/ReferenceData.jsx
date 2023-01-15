@@ -12,7 +12,7 @@ const ReferenceData = () => {
     console.log(allReferences);
     const { user } = useContext(AuthProvider);
     React.useEffect(() => {
-        fetch(`http://localhost:3025/references`)
+        fetch(`https://subrota-server.vercel.app/references`)
             .then(res => res.json())
             .then(data => {
                 setPageLoad(false);
@@ -24,13 +24,20 @@ const ReferenceData = () => {
     const deleteReference = (id) => {
         const confirmation = window.confirm("Do you want to delete this data?");
         if (confirmation) {
-            fetch(`http://localhost:3025/references/${id}`, {
+            fetch(`https://subrota-server.vercel.app/references/${id}`, {
                 method: "DELETE",
                 headers: {
                     authentication: `Bearer ${localStorage.getItem("portfolio-token")} `
                 }
             })
-                .then(res => res.json())
+                .then(res => {
+
+                    if (res.status === 403) {
+                        toast.warning("  😩 😩 You do have not access to delete this data. 😩 😩 ");
+                    } else {
+                        return res.json();
+                    }
+                })
                 .then(data => {
                     if (data.deletedCount > 0) {
                         toast.success("Your reference data is deleted !! ");
