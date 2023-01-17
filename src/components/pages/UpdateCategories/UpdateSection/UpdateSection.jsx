@@ -14,7 +14,6 @@ const UpdateSection = () => {
     const sectionData = useLoaderData();
     const [info, Setinfo] = useState(sectionData);
     const naviagate = useNavigate();
-console.log(sectionData);
     const onDrop = useCallback(acceptedFiles => {
         // Do something with the files
         setFileName(acceptedFiles[0]);
@@ -37,7 +36,14 @@ console.log(sectionData);
             method: "POST",
             body: formData
         })
-            .then(res => res.json())
+            .then(res => {
+                if (res.status === 403) {
+                    toast.warning("  😩 😩 You do have not access to delete this data. 😩 😩 ");
+                  sectionUpdateLoad(false) ;
+                } else {
+                    return res.json();
+                }
+            })
             .then(data => {
                 const projectImage = data.data?.display_url ? data.data?.display_url : sectionData?.projectImage;
 
@@ -57,7 +63,7 @@ console.log(sectionData);
                         if (data.acknowledged) {
                             toast.success("Congrasulations your section data is updated sucessfully !! ");
                             setsectionUpdateLoad(false);
-                            naviagate(`/details/${info.projectId}`);
+                            naviagate(`/singleDetailsData/${info.projectId}`);
                         }
                     })
             })

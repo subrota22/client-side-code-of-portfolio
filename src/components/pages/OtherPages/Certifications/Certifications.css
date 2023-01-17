@@ -1,11 +1,11 @@
 .certificateLink ul li a {
 text-decoration: none;
 display: block;
-color: rgb(167, 14, 72);
+color: rgb(240, 224, 230);
 margin: 10px 10px;
 }
 .certificateLink{
-    box-shadow:  0 0 4px 5px rgba(30, 255, 0 , 0.8);
+    /* box-shadow:  0 0 4px 5px rgba(30, 255, 0 , 0.8); */
     margin: auto;
     border-radius: 10px;
     padding: 20px;
@@ -29,4 +29,28 @@ padding: 20px;
 }
 .certificateLink ul li a:hover{
 color: lime;
+transition-duration: 2s;
+transform: scale(1.5);
 }
+
+.certificateImage{
+  height: 80px;
+  width: 80px;
+  border-radius: 25px;
+  margin-top: -10px;
+}
+
+.certificateBg{
+    animation: certificateBackground infinite 6s alternate linear;
+  }
+  @keyframes certificateBackground {
+    0%{
+    background-color: rgba(27, 16, 21, 0.979);
+    }  100%{
+      background-color: rgba(11, 51, 126, 0.5);
+    } 
+   }
+   .certificateLink:hover{
+transform: rotateX(10deg) rotateY(40deg) scale(0.6);
+transition-duration: 3s;
+   }

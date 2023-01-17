@@ -5,6 +5,7 @@ import AdminRouter from '../AdminRouter/AdminRouter';
 import About from '../pages/About/About';
 import AddNewProject from '../pages/AddCategories/AddNewProject/AddNewProject';
 import AddNewSection from '../pages/AddCategories/AddNewSection/AddNewSection';
+import AddNewSkill from '../pages/AddNewSkill/AddNewSkill';
 import Blogs from '../pages/Blogs/Blogs';
 import Contact from '../pages/Contact/Contact';
 import Details from '../pages/Details/Details';
@@ -21,6 +22,7 @@ import ResetPassword from '../pages/ResetPassword/ResetPassword';
 import UpdateProject from '../pages/UpdateCategories/UpdateProject/UpdateProject';
 import UpdateSection from '../pages/UpdateCategories/UpdateSection/UpdateSection';
 import UpdateProfile from '../pages/UpdateProfile/UpdateProfile';
+import UpdateSkill from '../pages/UpdateSkill/UpdateSkill';
 import PrivateRouter from '../PrivateRouter/PrivateRouter';
 
 const routes = createBrowserRouter([
@@ -30,9 +32,9 @@ const routes = createBrowserRouter([
                 path: "/", element: <Home></Home>
             },
             {
-                path: "/details/:id",
+                path: "/singleDetailsData/:id",
                 loader: async ({ params }) =>
-                    fetch(`https://subrota-server.vercel.app/details/${params.id}`, {
+                    fetch(`https://subrota-server-subrota22.vercel.app/singleDetailsData/${params.id}`, {
                         method: "GET",
                         headers: {
                             authentication: `Bearer ${localStorage.getItem("portfolio-token")} `
@@ -53,6 +55,24 @@ const routes = createBrowserRouter([
                 element: <About></About>
             },
             {
+                path: "/add-new-skill",
+
+                element: <AddNewSkill></AddNewSkill>
+            },
+            {
+                path: "/edit-skill/:id",
+                loader: ({ params }) =>
+                fetch(`https://subrota-server-subrota22.vercel.app/getSingleSkill/${params.id}`, {
+                    method: "GET",
+                    headers: {
+                        authentication: `Bearer ${localStorage.getItem("portfolio-token")} `
+                    }
+                }).then(res => res.json())
+                    .then(data => data) 
+                    ,
+                element: <UpdateSkill></UpdateSkill>
+            },
+            {
                 path: "/certifications",
 
                 element: <Certifications></Certifications>
@@ -68,7 +88,7 @@ const routes = createBrowserRouter([
                 element: <Blogs></Blogs>
             },
             {
-                path: "/reference", element: <PrivateRouter><Refferall></Refferall></PrivateRouter>
+                path: "/reference", element: <Refferall></Refferall>
             },
             {
                 path: "/add-new-project", element: <PrivateRouter>
@@ -109,7 +129,7 @@ const routes = createBrowserRouter([
                 path: "/profile", element: <PrivateRouter><Profile></Profile></PrivateRouter>
             },
             {
-                path: "/reset-password", element: <PrivateRouter><ResetPassword></ResetPassword></PrivateRouter>
+                path: "/reset-password", element:<ResetPassword></ResetPassword>
             },
             {
                 path: "/edit-project/:id",

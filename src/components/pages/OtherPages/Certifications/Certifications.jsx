@@ -7,8 +7,12 @@ const Certifications = () => {
         <>
           <Helmet><title>Certifications</title></Helmet>  
    <div className="container my-4 certificateLink fs-2 fw-bold">
-
-   <div className='text-center mx-auto fs-2 fw-bold styleHeadOfCertificate p-4 rounded-2'>
+  <div className='text-center mx-auto fs-2 fw-bold styleHeadOfCertificate p-4 rounded-2'>
+  <img src="https://i.ibb.co/thnpV23/certificate-logo.png" alt="certificate logo" className='certificateImage float-start mx-2' />
+     
+  <img src="https://i.ibb.co/thnpV23/certificate-logo.png" alt="certificate logo" className='certificateImage float-end mx-2' />
+       
+                   
                     {
                         //My best projects that I made in 20/10/2022
                         <Typewriter
@@ -16,14 +20,13 @@ const Certifications = () => {
                             loop={Infinity}
                             cursor
                             cursorStyle='_'
-                            typeSpeed={70}
-                            deleteSpeed={50}
+                            typeSpeed={90}
+                            deleteSpeed={80}
                             delaySpeed={1000}
                         />
                     }
                 </div>
- 
-          <ul>
+          <ul className='certificateBg'>
             <li>
             <a href="https://drive.google.com/file/d/1qsa8bKqNuBTWnG5vt2K26bnWhNC15y9w/view?usp=sharing" rel="noreferrer" target="_blank"> 
           Full stack web development

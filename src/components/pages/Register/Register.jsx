@@ -129,8 +129,9 @@ const Register = () => {
     return (
         <>
             <Helmet> <title> Register </title></Helmet>
-            <form autoComplete='off' onSubmit={handleSubmit} className='p-5 my-4 mx-auto bg-dark p-4' style={{ width: "50%" }}>
-                <h2 className='text-3xl text-white text-center my-4'> Register now </h2>
+          <div className="my-5">
+          <div className="bg-success text-white fs-2 text-center  m-auto text-uppercase fw-bolder py-3" style={{ width: "44%" }}> Register now  </div>
+            <form autoComplete='off' onSubmit={handleSubmit} className='p-5  mx-auto bg-dark p-4' style={{ width: "44%" }}>
                 <div className="relative  w-full ">
                     <input type="email" name="email" id="floating_email" placeholder='Email address' className="form-control my-4" required />
                 </div>
@@ -194,6 +195,7 @@ const Register = () => {
                 </p>
             </form>
 
+          </div>
         </>
     );
 };

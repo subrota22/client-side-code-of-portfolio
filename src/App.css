@@ -38,7 +38,7 @@
 }
 
 .styleHeadOfContent{
- transform: rotateX(10deg) rotateY(22deg);
+ transform: rotateX(-2deg) rotateY(52deg);
  margin: 60px 0px;
  background-color: rgba(48, 4, 21, 0.7);
  box-shadow: 0 0 8px 8px rgba(192, 7, 78, 0.6);
@@ -50,12 +50,12 @@
   box-shadow: 0 0 8px 8px rgba(6, 68, 184, 0.6);
   color: lime;
   transition-duration: 1s;
-  animation: spinHead infinite forwards 6s alternate;
+  animation: spinHead 2 linear forwards 6s alternate;
   cursor:pointer;
 }
 @keyframes spinHead {
   0%{
-    transform: rotate(0deg) scale(0.4);
+    transform: rotate(0deg) scale(0.8);
   } 100%{
     transform: rotate(380deg) scale(1)
   }

@@ -77,6 +77,7 @@ background-color: rgba(0, 0, 0, 0.5);
 padding-bottom: 25px;
 border-radius: 25px;
 box-shadow: 0 0 2px 3px rgba(0, 255, 0, 0.5);
+width: 95%;
 }
 .cardBackground:hover{
   box-shadow: 0 0 2px 3px rgba(251, 255, 0, 0.911);

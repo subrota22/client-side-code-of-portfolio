@@ -8,7 +8,7 @@ import { AuthProvider } from '../../../UserContext/UserContext';
 const AddNewProject = () => {
     const [fileName, setFileName] = useState({});
     const [fileStatus, setFileStatus] = useState(false);
-    const [registerLoad, setRegisterLoad] = useState(false);
+    const [addProjectLoad, setaddProjectLoad] = useState(false);
     const {user} = useContext(AuthProvider) ;
    
     const onDrop = useCallback(acceptedFiles => {
@@ -24,7 +24,7 @@ const AddNewProject = () => {
     const imageBbKey = process.env.REACT_APP_imageBbKey;
     const handleSubmit = (event) => {
         event.preventDefault();
-        setRegisterLoad(true);
+        setaddProjectLoad(true);
   
         const client_side_link = event.target.client_side_link.value.trim();
         const server_side_link = event.target.server_side_link.value.trim();
@@ -62,7 +62,8 @@ const AddNewProject = () => {
                             .then(res =>  {
 
                                 if (res.status === 403) {
-                                    toast.warning("  😩 😩 You do have not access to manipulate this data. 😩 😩 ");
+                                    toast.warning(" 😩 😩 You do have not access to manipulate this data. 😩 😩 ");
+                                    setaddProjectLoad(false) ;
                                 } else {
                                     return res.json();
                                 }
@@ -70,13 +71,13 @@ const AddNewProject = () => {
                             .then(data => {
                                 if (data.acknowledged) {
                                     toast.success("Congrasulations your new project added sucessfully !! ");
-                                    setRegisterLoad(false);
+                                    setaddProjectLoad(false);
                                     event.target.reset() ;
                                     setFileName({}) ;
                                 }
                             })
                     })
-                    .catch(error => { toast.error(error.message); setRegisterLoad(false) });
+                    .catch(error => { toast.error(error.message); setaddProjectLoad(false) });
 
     }
 
@@ -134,7 +135,7 @@ const AddNewProject = () => {
 
 
                 <button type="submit" className="text-white btn btn-success w-100">
-                    {registerLoad ? <ClipLoader color='white' className='pb-3'></ClipLoader> : "Add project"}
+                    {addProjectLoad ? <ClipLoader color='white' className='pb-3'></ClipLoader> : "Add project"}
                 </button>
             </form>
 

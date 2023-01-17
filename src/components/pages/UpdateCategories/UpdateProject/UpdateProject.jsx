@@ -36,7 +36,13 @@ const UpdateProject = () => {
             method: "POST",
             body: formData
         })
-            .then(res => res.json())
+            .then(res => {
+                if (res.status === 403) {
+                    toast.warning("  😩 😩 You do have not access to delete this data. 😩 😩 ");
+                } else {
+                    return res.json();
+                }
+            })
             .then(data => {
                 const projectImage = data.data?.display_url ? data.data?.display_url : projectsData?.projectImage;
 
@@ -51,7 +57,14 @@ const UpdateProject = () => {
                         projectImage: projectImage
                     })
                 })
-                    .then(res => res.json())
+                    .then(res => {
+                        if (res.status === 403) {
+                            toast.warning("  😩 😩 You do have not access to delete this data. 😩 😩 ");
+                            setProjectUpdateLoad(false) ;
+                        } else {
+                            return res.json();
+                        }
+                    })
                     .then(data => {
                         if (data.acknowledged) {
                             toast.success("Congrasulations your project data is updated sucessfully !! ");
@@ -72,7 +85,6 @@ const UpdateProject = () => {
         newUpdateProject[name] = value;
         Setinfo(newUpdateProject);
     }
-    console.log(info);
 
     return (
         <>

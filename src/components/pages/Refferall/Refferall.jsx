@@ -6,10 +6,15 @@ import { toast } from 'react-toastify';
 import { AuthProvider } from '../../UserContext/UserContext';
 
 const Refferall = () => {
-    const {user} = useContext(AuthProvider) ;
+    const {user , setUserData} = useContext(AuthProvider) ;
     const naviagate = useNavigate() ;
     const submitReferenceData = (event) => {
      event.preventDefault() ;
+     if(!user?.emailVerified){
+        naviagate("/login") ;
+        toast.info("You need to login and verify your email to give a reference.");
+        return ;
+    }
      const name= event.target.name.value.trim() ;
      const email= event.target.email.value.trim() ;
      const phone_number= event.target.phone_number.value.trim() ;
@@ -38,6 +43,8 @@ const Refferall = () => {
 
         if (res.status === 403) {
             toast.warning("  😩 😩 You do have not access to reference right now. 😩 😩 ");
+            setUserData({}) ;
+       
         } else {
             return res.json();
         }
@@ -52,10 +59,7 @@ const Refferall = () => {
         }
     })
     } ;
-    if(!user?.emailVerified){
-        naviagate("/profile") ;
-        toast.info("You need to login and verify your email to give a reference.");
-    }
+
     return (
         <>
             <Helmet><title>Reference</title></Helmet>

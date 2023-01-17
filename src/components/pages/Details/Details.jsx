@@ -9,68 +9,75 @@ import { AuthProvider } from '../../UserContext/UserContext';
 import { BiEditAlt } from 'react-icons/bi';
 import DeleteConformation from '../../share/DeleteConformation/DeleteConformation';
 import { toast } from 'react-toastify';
+import { PhotoProvider, PhotoView } from 'react-photo-view';
 const Details = () => {
     const [pageLoad, setPageLoad] = useState(true)
     const detailsInfo = useLoaderData();
-    const [detailsData, setDetailsData] = useState(detailsInfo);
-    const [modalData , setmodalData] = useState() ;
-    const [showModal , setShowModal] = useState(false) ;
+    const [detailsData, setDetailsData] = useState([]);
+    const [modalData, setmodalData] = useState();
+    const [showModal, setShowModal] = useState(false);
+    const [count, setCount] = useState(0);
+    const [page, setPage] = useState(0);
+    const [pageSize, setPageSize] = useState(6);
+    const pages = Math.ceil(count /pageSize);
     const { user } = useContext(AuthProvider);
-
     React.useEffect(() => {
-        if(!detailsInfo[0]?.projectId) return ;
-        fetch(`https://portfolio-lake-nu-82.vercel.app/details/${detailsInfo[0]?.projectId}`)
+        fetch(`https://subrota-server-subrota22.vercel.app/details?page=${page}&size=${pageSize}&id=${detailsInfo[0]?.projectId}`)
             .then(res => res.json())
-            .then(data => { setPageLoad(false) });
-    }, [detailsInfo]);
+            .then(data => {
+                setDetailsData(data?.data);
+                setCount(data?.count);
+                setPageLoad(false);
+            });
+    }, [detailsInfo, page, pageSize]);
 
     if (pageLoad) {
         return <div style={{ margin: "20% 50%" }}><FadeLoader color="#36d7b7" /></div>
     }
 
     const setData = (reciveData) => {
-        setmodalData(reciveData) ;
-        setShowModal(true) ;
-       }
+        setmodalData(reciveData);
+        setShowModal(true);
+    }
 
 
     //delete project section
 
     const deleteProjectSection = (id) => {
         // console.log(id);
-            fetch(`https://subrota-server.vercel.app/details/${id}`, {
-                method: "DELETE",
-                headers: {
-                    authentication: `Bearer ${localStorage.getItem("portfolio-token")} `
+        fetch(`https://subrota-server.vercel.app/details/${id}`, {
+            method: "DELETE",
+            headers: {
+                authentication: `Bearer ${localStorage.getItem("portfolio-token")} `
+            }
+        })
+            .then(res => {
+
+                if (res.status === 403) {
+                    toast.warning("  😩 😩 You do have not access to delete this data. 😩 😩 ");
+                } else {
+                    return res.json();
                 }
             })
-                .then(res => {
-
-                    if (res.status === 403) {
-                        toast.warning("  😩 😩 You do have not access to delete this data. 😩 😩 ");
-                    } else {
-                        return res.json();
-                    }
-                })
-                .then(data => {
-                    if (data.deletedCount > 0) {
-                        const restData = detailsData.filter(data => data._id !== id);
-                        setDetailsData(restData);
-                    }
-                });
+            .then(data => {
+                if (data.deletedCount > 0) {
+                    const restData = detailsData.filter(data => data._id !== id);
+                    setDetailsData(restData);
+                }
+            });
     }
 
     return (
         <>
             <Helmet> <title> Project details </title></Helmet>
 
-            {  showModal  && 
-<DeleteConformation
- modalData={modalData}
- setShowModal={setShowModal}
-deleteProject={deleteProjectSection}
->
-</DeleteConformation>}
+            {showModal &&
+                <DeleteConformation
+                    modalData={modalData}
+                    setShowModal={setShowModal}
+                    deleteProject={deleteProjectSection}
+                >
+                </DeleteConformation>}
 
             <div>
 
@@ -104,15 +111,15 @@ deleteProject={deleteProjectSection}
                         </defs>
                     </Wave>
                 </div>
-                <div className="text-start mx-2 mb-5">
-                    <NavLink to={"/"} className="btn btn-outline-info w-25 my-2">Go back home</NavLink>
+                <div className="text-center mx-2 mb-5">
+                    <NavLink to={"/"} className="btn btn-outline-success w-25 my-2">Go back home</NavLink>
 
                 </div>
 
                 <div >
                     {detailsInfo.length === 0 || !detailsInfo ? <>
                         <p className='text-danger fs-3 fw-bolder text-center my-2'>Project details not found coming soon...</p>
-                
+
                     </> :
 
                         <div className="container">
@@ -123,7 +130,15 @@ deleteProject={deleteProjectSection}
                                     detailsData?.map(detail =>
                                         <div className="col col-12 col-sm-12 col-md-6 col-lg-4 my-3" key={detail?._id}>
                                             <div className="h-100 cardBackground text-white" >
-                                                <img src={detail?.image} className="card-img-top myImage rounded-4 p-2" alt="detail" />
+                                                <PhotoProvider>
+                                                    <PhotoView src={detail?.image ? detail?.image : "https://i.ibb.co/RSCmwXf/imagenot.jpg"}>
+                                                        <img src={detail?.image ? detail?.image : "https://i.ibb.co/RSCmwXf/imagenot.jpg"}
+                                                            className="w-100 projectImage" style={{ height: "250px" }}
+                                                            alt={detail?.technology ? detail?.technology : "technology not found"}
+                                                            title="Click on this image to see the full image"
+                                                        />
+                                                    </PhotoView>
+                                                </PhotoProvider>
                                                 <div className="card-body p-3">
                                                     <h5 className="card-title"> <span className='text-info'>Project name:</span> {detail?.projectName}</h5>
                                                     <h5 className="card-title"><span className='text-info'>Project section :  </span> {detail?.projectTitle}</h5>
@@ -134,7 +149,7 @@ deleteProject={deleteProjectSection}
                                                         <div>
                                                             {
                                                                 user?.email === "subrota45278@gmail.com" &&
-                                                                <BsFillTrash2Fill className='text-danger fs-3 fw-bold' title={`Click on this icon to delete your  ${detail?.projectName} project data`}
+                                                                <BsFillTrash2Fill style={{ cursor: "pointer" }} className='text-danger fs-3 fw-bold' title={`Click on this icon to delete your  ${detail?.projectName} project data`}
                                                                     onClick={() => setData(detail)}></BsFillTrash2Fill>
 
                                                             }
@@ -159,6 +174,51 @@ deleteProject={deleteProjectSection}
                             </div>
                         </div>
                     }
+                </div>
+                {/* pagination  */}
+                <div className="text-center">
+
+                    {
+                        //page + 1 >=
+                        page + 1 >= [...Array(pages).keys()].length &&
+                        <button  
+                        className={`btn btn-danger text-white fs-5 fw-bold py-2 px-4 mx-3 ${pages===1  && 'd-none'}`}
+                        onClick={() => setPage(page - 1)}>
+                            <i class="fa-solid fa-angle-left text-white fs-4 fw-bold"></i>
+                            <i class="fa-solid fa-angle-left text-white fs-4 fw-bold"></i>
+                        </button>
+                    }
+
+                    {
+                        [...Array(pages).keys()].map(pageNumber =>
+                            <button className={pageNumber === page ? 'btn btn-primary  mx-2 px-4 py-2 fs-5 fw-bold my-3' : 'btn px-4 fs-5 fw-bold py-2 btn-success mx-2'}
+                                onClick={() => setPage(pageNumber)}
+                            >{pageNumber + 1}</button>
+                        )
+                    }
+
+                    {
+
+                        [...Array(pages).keys()].length > page + 1 &&
+                        <button 
+                        className={`btn btn-danger text-white fs-5 fw-bold py-2 px-4 mx-3 ${pages===1  && 'd-none'}`}
+                        onClick={() => setPage(page + 1)}>
+
+                            <i class="fa-solid fa-angle-right text-white fs-4 fw-bold"></i>
+                            <i class="fa-solid fa-angle-right text-white fs-4 fw-bold"></i>
+                        </button>
+                    }
+
+
+                    {/* page size set  */}
+                    <select className='btn btn-success text-white fs-5 fw-bold py-2 px-4 mx-3' onChange={(e) => setPageSize(e.target.value)}>
+                    <option value="10">10</option>
+                    <option value="8">8</option>
+                        <option value="6">6</option>
+                        <option value="4">4</option>
+                        <option value="2">2</option>
+                    </select>
+
                 </div>
             </div></>
     );

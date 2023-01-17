@@ -52,7 +52,7 @@ setEmailVerifyLoad(false) ;
 
 </div>
 
-<div className='my-2 mt-4'>
+<div className='mt-2'>
 <NavLink to="/update-profile" className="btn btn-success mx-2">
     Update profile
 </NavLink>

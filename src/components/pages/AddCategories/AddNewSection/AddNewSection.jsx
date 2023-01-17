@@ -14,10 +14,10 @@ import { AuthProvider } from '../../../UserContext/UserContext';
 const AddNewSection = () => {
     const [fileName, setFileName] = useState({});
     const [fileStatus, setFileStatus] = useState(false);
-    const [registerLoad, setRegisterLoad] = useState(false);
+    const [newSectionLoad, setnewSectionLoad] = useState(false);
     const { user } = useContext(AuthProvider);
     const detailsData = useLoaderData();
-    console.log(detailsData);
+
     // const naviagate = useNavigate();
 
     const onDrop = useCallback(acceptedFiles => {
@@ -33,7 +33,7 @@ const AddNewSection = () => {
     const imageBbKey = process.env.REACT_APP_imageBbKey;
     const handleSubmit = (event) => {
         event.preventDefault();
-        setRegisterLoad(true);
+        setnewSectionLoad(true);
 
         const projectTitle = event.target.projectTitle.value.trim();
         const details = event.target.details.value.trim();
@@ -67,6 +67,7 @@ const AddNewSection = () => {
 
                         if (res.status === 403) {
                             toast.warning("  😩 😩 You do have not access to manipulate this data. 😩 😩 ");
+                            setnewSectionLoad(false);
                         } else {
                             return res.json();
                         }
@@ -74,13 +75,13 @@ const AddNewSection = () => {
                     .then(data => {
                         if (data.acknowledged) {
                             toast.success("Congrasulations your new section added sucessfully !! ");
-                            setRegisterLoad(false);
+                            setnewSectionLoad(false);
                             event.target.reset();
                             setFileName({});
                         }
                     })
             })
-            .catch(error => { toast.error(error.message); setRegisterLoad(false) });
+            .catch(error => { toast.error(error.message); setnewSectionLoad(false) });
 
     }
 
@@ -92,7 +93,7 @@ const AddNewSection = () => {
 
             <div className='text-center'>
                 {user?.uid && detailsData.length !== 0 ?
-                    <a href={`/details/${detailsData?._id}`} className="btn btn-outline-info w-50 mx-5 py-2 
+                    <a href={`/singleDetailsData/${detailsData?._id}`} className="btn btn-outline-info w-50 mx-5 py-2 
                                                 my-5 hideBtn" >See  Your All Added section  <i className="fa-solid fa-arrow-right showDetailsAnimation"></i> </a>
                     : undefined
                 }
@@ -139,7 +140,7 @@ const AddNewSection = () => {
 
 
                 <button type="submit" className="text-white btn btn-success w-100">
-                    {registerLoad ? <ClipLoader color='white' className='pb-3'></ClipLoader> : "Add section"}
+                    {newSectionLoad ? <ClipLoader color='white' className='pb-3'></ClipLoader> : "Add section"}
                 </button>
             </form>
 

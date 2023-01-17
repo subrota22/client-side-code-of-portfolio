@@ -72,9 +72,9 @@ const Navbar = () => {
                                             <li>
                                     <NavLink className="dropdown-item"  to="/blogs"> Blogs </NavLink>
                                             </li>
-                                            <li>
+                                      {  user?.uid &&    <li>
                                     <NavLink className="dropdown-item"  to="/referral"> Referral </NavLink>
-                                            </li>
+                                            </li>}
                                             <li className="dropdown-item">
                                 <a className="dropdown-link  text-decoration-none text-dark" target="_blank" rel='noreferrer'
                                     href="https://green-computers-1a8a8.firebaseapp.com/">Node.js website</a>
@@ -106,13 +106,15 @@ const Navbar = () => {
                             </>
                                             }
                           
-                                <li>
-                                      <div className="dropdown-item btn btn-outline-info" onClick={() => logout()}>  
-                                      <button className="btn btn-danger w-100 py-2">
-                                      Log out 
-                                      </button>
-                                       </div>
-                                            </li>
+                          {
+                                 user?.uid &&  <li>
+                                  <div className="dropdown-item btn btn-outline-info" onClick={() => logout()}>  
+                                  <button className="btn btn-danger w-100 py-2">
+                                  Log out 
+                                  </button>
+                                   </div>
+                                        </li>
+                          }
                                             
                                           
                                 </ul>

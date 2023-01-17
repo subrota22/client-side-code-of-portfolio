@@ -5,7 +5,8 @@ const Contact = () => {
     return (
         <>  
         <Helmet> <title> Contact me </title></Helmet>    
-    <div className="bg-info text-white fs-2 text-center w-50 m-auto text-uppercase fw-bolder py-3 ">contact me</div>
+   <div className="my-5">
+   <div className="bg-info text-white fs-2 text-center w-50 m-auto text-uppercase fw-bolder py-3 ">contact me</div>
     <form action="https://formsubmit.co/ranimu233@gmail.com" method="post" className="was-validated w-50 m-auto mb-5
      bg-dark p-5 rounded-0 text-white h-auto" data-aos="zoom-in" data-aos-anchor-placement="center-center "
         data-aos-duration="2000">
@@ -43,6 +44,7 @@ const Contact = () => {
             </button>
         </div>
     </form>
+   </div>
         </>
     );
 };
