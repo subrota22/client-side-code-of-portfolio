@@ -1,12 +1,14 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { BiSend } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom';
+import ClipLoader from 'react-spinners/ClipLoader';
 import { toast } from 'react-toastify';
 import { AuthProvider } from '../../UserContext/UserContext';
 
 const Refferall = () => {
     const {user , setUserData} = useContext(AuthProvider) ;
+    const [referallLoad, setreferallLoad] = useState(false);
     const naviagate = useNavigate() ;
     const submitReferenceData = (event) => {
      event.preventDefault() ;
@@ -44,6 +46,7 @@ const Refferall = () => {
         if (res.status === 403) {
             toast.warning("  😩 😩 You do have not access to reference right now. 😩 😩 ");
             setUserData({}) ;
+            setreferallLoad(false) ;
        
         } else {
             return res.json();
@@ -54,7 +57,7 @@ const Refferall = () => {
             toast.success("You have given references successfully !!");
             naviagate("/") ;
         } else if(data.message === true ){
-            toast.success("You had given references !!");
+            toast.success(" You had given a reference !!");
             naviagate("/referral") ;
         }
     })
@@ -105,8 +108,11 @@ const Refferall = () => {
         </div>
         <div>
             <button className="btn btn-outline-primary text-white w-100 fw-bold  pt-2 sendBtn">
-                Send reference
-            <BiSend className='float-end fs-2 sendSign'></BiSend>
+              
+            {referallLoad ? <ClipLoader color='white' className='pb-3'></ClipLoader> : <>
+            Send reference
+            <BiSend className='float-end fs-2 sendSign'></BiSend></>}
+         
             </button>
         </div>
     </form>

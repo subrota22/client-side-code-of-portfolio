@@ -8,7 +8,7 @@ const MainSection = () => {
                     <div className="card-bod">
                         <div className="d-flex flex-column-reverse flex-md-row">
                             <div className="col">
-                                <h5 className="card-title">Name: Subrota chandra saerker </h5>
+                                <h5 className="card-title">Name: Subrota chandra sarker </h5>
                                 <h5 className="card-title">Profession: Full-stack developer </h5>
                                 <p className="card-text">
                                     I am a full-stack web developer as you know from my <br/>

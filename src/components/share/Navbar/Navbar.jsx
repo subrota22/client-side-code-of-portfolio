@@ -133,8 +133,8 @@ const Navbar = () => {
                                  
                                  />
                                  <div style={{height:"12px" , width:"12px" , 
-                                 border:"2px solid lime" , marginTop:"20%" , borderRadius:"50%" ,
-                                 backgroundColor:"black" }} className="d-none float-end mx-2 d-md-block" >
+                                 border:"2px solid white" , marginTop:"20%" , borderRadius:"50%" ,
+                                 backgroundColor:"lime" }} className="d-none float-end mx-2 d-md-block" >
 
                                  </div>
                                 </NavLink>

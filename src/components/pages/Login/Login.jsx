@@ -78,10 +78,16 @@ const Login = () => {
           <p className='my-4'>
             <NavLink to="/reset-password" className="text-decoration-none">If yo forgot password please <span className='text-info'>Reset password</span> </NavLink>
           </p>
-          <p className='text-center fs-3 fw-bolder'> ---- Or you can ---- </p>
+          
+          <div className="dflex">
+            <div className="fline"></div>
+            <div className="rowtext"> Or you can </div>
+            <div className="sline"></div>
+          </div>
+
           <div className="d-flex flex-column my-2 w-full ">
-            <div onClick={handleGoogleLogin} className="btn btn-outline-info text-white fw-bold my-2"> Register with Google </div>
-            <div onClick={handleGitHubLogin} className="btn btn-outline-info text-white fw-bold my-2"> Register with GitHub </div>
+            <div onClick={handleGoogleLogin} className="btn btn-outline-info text-white fw-bold my-2"> Login with Google </div>
+            <div onClick={handleGitHubLogin} className="btn btn-outline-info text-white fw-bold my-2"> Login with GitHub </div>
           </div>
         </form>
       </div>

@@ -1,8 +1,8 @@
 
 import Swal from 'sweetalert2';
 
-const DeleteConformation = ({ modalData, deleteProject, setShowModal }) => {
-  console.log("=>", modalData);
+const DeleteConformation = ({ modalData , setShowModal , deleteFunction }) => {
+
   const swalWithBootstrapButtons = Swal.mixin({
     customClass: {
       confirmButton: 'btn btn-success mx-2 px-4 py-2 shadow-lg shadow p-3 mb-5 bg-body-tertiary rounded',
@@ -10,7 +10,7 @@ const DeleteConformation = ({ modalData, deleteProject, setShowModal }) => {
     },
     buttonsStyling: false
   })
-
+  setShowModal(false);
   swalWithBootstrapButtons.fire({
     title: 'Are you sure?',
     text: `You won't be able to revert this data`,
@@ -21,20 +21,13 @@ const DeleteConformation = ({ modalData, deleteProject, setShowModal }) => {
     reverseButtons: true,
     background: "#40073B",
     color: "#EACAE8",
-    padding: "12px"
-  }).then((result) => {
-    if (result.isConfirmed) {
-      deleteProject(modalData._id);
-      swalWithBootstrapButtons.fire({
-        title: 'Deleted !',
-        text: 'Your data has been deleted.',
-        icon: 'success',
-        background: "#40073B",
-        color: "#EACAE8",
-        timer: 3000,
-      });
+    padding: "12px",
+    timer:12000,
+  }  ).then((result) => {
 
-      setShowModal(false);
+    if (result.isConfirmed) {
+      deleteFunction(modalData._id);
+       setShowModal(false);
     } else if (result.dismiss === Swal.DismissReason.cancel) {
       swalWithBootstrapButtons.fire({
         title: 'Cancelled ',
@@ -46,7 +39,7 @@ const DeleteConformation = ({ modalData, deleteProject, setShowModal }) => {
       }
       );
       setShowModal(false);
-    }
+    } 
   })
 };
 

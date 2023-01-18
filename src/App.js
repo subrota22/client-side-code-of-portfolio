@@ -5,6 +5,8 @@ import routes from './components/routes/routes';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-photo-view/dist/react-photo-view.css';
+import 'react-slider-awesome/dist/index.css';
+import 'react-phone-number-input/style.css';
 import { useCallback } from "react";
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
@@ -12,7 +14,7 @@ import FadeLoader from 'react-spinners/FadeLoader';
 //NOTE : simply install react-particles and tsparticles to use tsparticles
 function App() {
   const particlesInit = useCallback(async engine => {
-    console.log(engine);
+
     // you can initiate the tsParticles instance (engine) here, adding custom shapes or presets
     // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
     // starting from v2 you can add only the features you need reducing the bundle size

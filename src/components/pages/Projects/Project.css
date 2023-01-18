@@ -1,4 +1,11 @@
 .projectImage{
-    border-top-left-radius: 25px;
-    border-top-right-radius: 25px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+.projectImageStyle{
+    border-top-left-radius:22px;
+    border-top-right-radius: 22px;   
+}
+#floating_phone{
+    border: none;
 }

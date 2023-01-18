@@ -7,6 +7,8 @@ import { NavLink } from 'react-router-dom';
 import { Typewriter } from 'react-simple-typewriter';
 import { toast } from 'react-toastify';
 import DeleteConformation from '../../share/DeleteConformation/DeleteConformation';
+import errorDeleteMessage from '../../share/deleteMessage/errorDeleteMessage';
+import successDeleteMessage from '../../share/deleteMessage/successDeleteMessage';
 import PageLoad from '../../share/PageLoad/PageLoad';
 import { AuthProvider } from '../../UserContext/UserContext';
 import "./Project.css";
@@ -55,23 +57,30 @@ const Projects = () => {
                 if (data?.result?.deletedCount > 0) {
                     const restData = projects.filter(data => data._id !== id);
                     setProjects(restData);
+                    successDeleteMessage() ;
                 };
                 if (data?.deleteAllSection?.deletedCount > 0) {
                     toast.success(" 😀😀😀😀 Your project and all project secetions is deleted successfully 😀😀😀😀")
                 }
-            });
+            })
+            .catch(error => errorDeleteMessage(error)) ;
     }
     if (pageLoad) {
         return <PageLoad></PageLoad>
     }
+    if(projects?.length  === 0 ) {
+        return setPageLoad(false);
+    }
     return (
         <>
 
-            {showModal &&
+         {
+          projects?.length !== 0 &&   <div>
+                   {showModal &&
                 <DeleteConformation
                     modalData={modalData}
                     setShowModal={setShowModal}
-                    deleteProject={deleteProject}
+                    deleteFunction={deleteProject}
                 >
                 </DeleteConformation>}
 
@@ -99,9 +108,9 @@ const Projects = () => {
                                     <PhotoProvider>
                                         <PhotoView src={project?.projectImage ? project?.projectImage : "https://i.ibb.co/RSCmwXf/projectImagenot.jpg"}>
                                             <img src={project?.projectImage ? project?.projectImage : "https://i.ibb.co/RSCmwXf/imagenot.jpg"}
-                                                className="w-100 projectImage" style={{ height: "350px"}}
+                                                className="w-100 projectImageStyle" style={{ height: "350px"}}
                                                 alt={project?.technology ? project?.technology : "technology not found"}
-                                                title="Click on the image to see the full image"
+                                                title="Click on this image to see the full image"
                                             />
                                         </PhotoView>
                                     </PhotoProvider>
@@ -191,13 +200,13 @@ const Projects = () => {
                 </div>
 
                 {/* pagination  */}
-                <div className="text-center">
+                <div className="text-center mt-4">
 
                     {
                         //page + 1 >=
                         page + 1 >= [...Array(pages).keys()].length &&
                         <button  
-                        className={`btn btn-danger text-white fs-5 fw-bold py-2 px-4 mx-3 ${pages===1  && 'd-none'}`}
+                        className={`btn btn-primary text-white fs-5 fw-bold py-2 px-3 mx-3 ${pages===1  && 'd-none'}`}
                          onClick={() => setPage(page - 1)}>
                             <i class="fa-solid fa-angle-left text-white fs-4 fw-bold"></i>
                             <i class="fa-solid fa-angle-left text-white fs-4 fw-bold"></i>
@@ -206,7 +215,7 @@ const Projects = () => {
 
                     {
                         [...Array(pages).keys()].map(pageNumber =>
-                            <button className={pageNumber === page ? 'btn btn-primary  mx-2 px-4 py-2 fs-5 fw-bold my-3' : 'btn px-4 fs-5 fw-bold py-2 btn-success mx-2'}
+                            <button className={pageNumber === page ? 'activeButton  mx-2 px-4 py-2 fs-5 fw-bold my-3' : 'btn px-4 fs-5 fw-bold py-2 btn-success mx-2'}
                                 onClick={() => setPage(pageNumber)}
                             >{pageNumber + 1}</button>
                         )
@@ -216,7 +225,7 @@ const Projects = () => {
 
                         [...Array(pages).keys()].length > page + 1 &&
                         <button 
-                        className={`btn btn-danger text-white fs-5 fw-bold py-2 px-4 mx-3 ${pages===1  && 'd-none'}`}
+                        className={`btn btn-primary text-white fs-5 fw-bold py-2 px-3 mx-3 ${pages===1  && 'd-none'}`}
                          onClick={() => setPage(page + 1)}>
 
                             <i class="fa-solid fa-angle-right text-white fs-4 fw-bold"></i>
@@ -226,17 +235,33 @@ const Projects = () => {
 
 
                     {/* page size set  */}
-                    <select className='btn btn-success text-white fs-5 fw-bold py-2 px-4 mx-3' onChange={(e) => setPageSize(e.target.value)}>
-                    <option value="10">10</option>
-                    <option value="8">8</option>
-                        <option value="6">6</option>
-                        <option value="4">4</option>
-                        <option value="2">2</option>
+                    <select className='btn btn-success text-white fs-5 fw-bold py-2  px-4 mx-3' onChange={(e) => setPageSize(e.target.value)}>
+                    <option className='text-info fw-bold' disabled> Select page size. </option>
+                    <option value="2">2</option>
+                         <option value="4">4</option>
+                         <option value="6" 
+                                  selected>6</option>
+                         <option value="8">8</option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="30">30</option>
+                        <option value="40">40</option>
+                        <option value="50">50</option>
+                        <option value="60">60</option>
+                        <option value="70">70</option>
+                        <option value="80">80</option>
+                        <option value="90">90</option>
+                        <option value="100">100</option>
+                        <option value="110">110</option>
+                        <option value="120">120</option>
+                        <option value="300">130</option>
                     </select>
 
                 </div>
 
             </div>
+            </div>
+         }
         </>
     );
 };

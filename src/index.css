@@ -18,7 +18,7 @@ animation: skillText infinite forwards 2s alternate;
   from{ opacity: 1; } to{opacity: 0.5;}
 }
 .body{
-background-color: black;
+background-color:#060631;
 color: white;
 font-family: 'Raleway', sans-serif;
 }
@@ -73,14 +73,13 @@ margin-bottom: 45px;
 }
 
 .cardBackground{
-background-color: rgba(0, 0, 0, 0.5);
 padding-bottom: 25px;
 border-radius: 25px;
 box-shadow: 0 0 2px 3px rgba(0, 255, 0, 0.5);
 width: 95%;
 }
 .cardBackground:hover{
-  box-shadow: 0 0 2px 3px rgba(251, 255, 0, 0.911);
+  box-shadow: 0 0 2px 3px #D5DC0A;
   transition-duration: 2s;
   cursor: pointer;
 }

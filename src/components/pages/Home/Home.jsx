@@ -1,6 +1,7 @@
 import React from 'react';
 import Projects from '../Projects/Projects';
 import Skills from '../Skills/Skills';
+import { SliderCarousel } from './Carousel/SliderCarousel';
 import HeadSection from './HeadSection/HeadSection';
 import MainSection from './MainSection/MainSection';
 const Home = () => {
@@ -11,7 +12,7 @@ const Home = () => {
     <Projects></Projects>
          <Skills></Skills>
       <MainSection></MainSection>
-   
+           <SliderCarousel></SliderCarousel>
         </>
     );
 };

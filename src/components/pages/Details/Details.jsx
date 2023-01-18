@@ -10,6 +10,8 @@ import { BiEditAlt } from 'react-icons/bi';
 import DeleteConformation from '../../share/DeleteConformation/DeleteConformation';
 import { toast } from 'react-toastify';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
+import successDeleteMessage from '../../share/deleteMessage/successDeleteMessage';
+import errorDeleteMessage from '../../share/deleteMessage/errorDeleteMessage';
 const Details = () => {
     const [pageLoad, setPageLoad] = useState(true)
     const detailsInfo = useLoaderData();
@@ -63,19 +65,23 @@ const Details = () => {
                 if (data.deletedCount > 0) {
                     const restData = detailsData.filter(data => data._id !== id);
                     setDetailsData(restData);
+                    successDeleteMessage() ;
                 }
-            });
+            })
+            .catch(error => errorDeleteMessage(error))
     }
 
     return (
         <>
             <Helmet> <title> Project details </title></Helmet>
-
-            {showModal &&
+{
+    detailsData?.length !==0 && <div>
+        
+        {showModal &&
                 <DeleteConformation
                     modalData={modalData}
                     setShowModal={setShowModal}
-                    deleteProject={deleteProjectSection}
+                    deleteFunction={deleteProjectSection}
                 >
                 </DeleteConformation>}
 
@@ -117,10 +123,6 @@ const Details = () => {
                 </div>
 
                 <div >
-                    {detailsInfo.length === 0 || !detailsInfo ? <>
-                        <p className='text-danger fs-3 fw-bolder text-center my-2'>Project details not found coming soon...</p>
-
-                    </> :
 
                         <div className="container">
                             <div className="row">
@@ -133,7 +135,7 @@ const Details = () => {
                                                 <PhotoProvider>
                                                     <PhotoView src={detail?.image ? detail?.image : "https://i.ibb.co/RSCmwXf/imagenot.jpg"}>
                                                         <img src={detail?.image ? detail?.image : "https://i.ibb.co/RSCmwXf/imagenot.jpg"}
-                                                            className="w-100 projectImage" style={{ height: "250px" }}
+                                                            className="w-100 projectImageStyle" style={{ height: "250px" }}
                                                             alt={detail?.technology ? detail?.technology : "technology not found"}
                                                             title="Click on this image to see the full image"
                                                         />
@@ -173,7 +175,7 @@ const Details = () => {
                                 }
                             </div>
                         </div>
-                    }
+                    
                 </div>
                 {/* pagination  */}
                 <div className="text-center">
@@ -182,7 +184,7 @@ const Details = () => {
                         //page + 1 >=
                         page + 1 >= [...Array(pages).keys()].length &&
                         <button  
-                        className={`btn btn-danger text-white fs-5 fw-bold py-2 px-4 mx-3 ${pages===1  && 'd-none'}`}
+                        className={`btn btn-primary text-white fs-5 fw-bold py-2 px-3 mx-3 ${pages===1  && 'd-none'}`}
                         onClick={() => setPage(page - 1)}>
                             <i class="fa-solid fa-angle-left text-white fs-4 fw-bold"></i>
                             <i class="fa-solid fa-angle-left text-white fs-4 fw-bold"></i>
@@ -191,7 +193,7 @@ const Details = () => {
 
                     {
                         [...Array(pages).keys()].map(pageNumber =>
-                            <button className={pageNumber === page ? 'btn btn-primary  mx-2 px-4 py-2 fs-5 fw-bold my-3' : 'btn px-4 fs-5 fw-bold py-2 btn-success mx-2'}
+                            <button className={pageNumber === page ? ' activeButton mx-2 px-4 py-2 fs-5 fw-bold my-3' : 'btn px-4 fs-5 fw-bold py-2 btn-success mx-2'}
                                 onClick={() => setPage(pageNumber)}
                             >{pageNumber + 1}</button>
                         )
@@ -201,7 +203,7 @@ const Details = () => {
 
                         [...Array(pages).keys()].length > page + 1 &&
                         <button 
-                        className={`btn btn-danger text-white fs-5 fw-bold py-2 px-4 mx-3 ${pages===1  && 'd-none'}`}
+                        className={`btn btn-primary text-white fs-5 fw-bold py-2 px-3 mx-3 ${pages===1  && 'd-none'}`}
                         onClick={() => setPage(page + 1)}>
 
                             <i class="fa-solid fa-angle-right text-white fs-4 fw-bold"></i>
@@ -212,15 +214,50 @@ const Details = () => {
 
                     {/* page size set  */}
                     <select className='btn btn-success text-white fs-5 fw-bold py-2 px-4 mx-3' onChange={(e) => setPageSize(e.target.value)}>
-                    <option value="10">10</option>
-                    <option value="8">8</option>
-                        <option value="6">6</option>
-                        <option value="4">4</option>
-                        <option value="2">2</option>
+                    <option className='text-info fw-bold' disabled> Select page size. </option>
+                    <option value="2">2</option>
+                         <option value="4">4</option>
+                         <option value="6" 
+                                  selected>6</option>
+                         <option value="8">8</option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="30">30</option>
+                        <option value="40">40</option>
+                        <option value="50">50</option>
+                        <option value="60">60</option>
+                        <option value="70">70</option>
+                        <option value="80">80</option>
+                        <option value="90">90</option>
+                        <option value="100">100</option>
+                        <option value="110">110</option>
+                        <option value="120">120</option>
+                        <option value="300">130</option>
                     </select>
 
                 </div>
-            </div></>
+            </div>
+    </div>
+}
+
+            {
+  detailsData?.length === 0 &&   
+   <div style={{margin:"158px 78px"}} className='text-center mx-auto fs-2 fw-bold styleHeadOfContent p-4 rounded-2'>
+    {
+        //My best projects that I made in 20/10/2022
+      <Typewriter
+            words={['There is no', 'detials have', 'yet !!']}
+            loop={Infinity}
+            cursor
+            cursorStyle='_'
+            typeSpeed={70}
+            deleteSpeed={50}
+            delaySpeed={1000}
+        />
+    }
+</div>
+} 
+            </>
     );
 };
 

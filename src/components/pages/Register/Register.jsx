@@ -7,6 +7,8 @@ import { AuthProvider } from '../../UserContext/UserContext';
 import ClipLoader from "react-spinners/ClipLoader";
 import { BsCloudUploadFill } from "react-icons/bs";
 import { authUser } from '../../authUser/authUser';
+import PhoneInput from 'react-phone-number-input';
+
 const Register = () => {
     const [fileName, setFileName] = useState({});
     const [fileStatus, setFileStatus] = useState(false);
@@ -14,6 +16,7 @@ const Register = () => {
     const location = useLocation();
     const from = location?.state?.from?.pathname || "/";
     const naviagate = useNavigate();
+    const [phoneNumber, setPhoneNumber] = useState();
     //create user 
     const {
         createNewUser, sendEmailVerify, loginWithGoogle,
@@ -25,6 +28,7 @@ const Register = () => {
         setFileName(acceptedFiles[0]);
         setFileStatus(true);
     }, [])
+    console.log(phoneNumber);
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
     //
     const formData = new FormData();
@@ -44,7 +48,6 @@ const Register = () => {
         const first_name = event.target.first_name.value.trim();
         const last_name = event.target.last_name.value.trim();
         const name = first_name + " " + last_name;
-        const phone_number = event.target.phone_number.value.trim();
         const company_name = event.target.phone_number.value.trim();
         // console.log(email);
         fetch(`https://api.imgbb.com/1/upload?key=${imageBbKey}`, {
@@ -61,13 +64,13 @@ const Register = () => {
                             name: name,
                             email: email,
                             profile: imageLink,
-                            phoneNumber: phone_number,
+                            phoneNumber: phoneNumber,
                             companyName: company_name,
                         }
                         fetch("https://subrota-server.vercel.app/users", {
                             method: "POST",
                             headers: {
-                            "Content-Type": "application/json",
+                                "Content-Type": "application/json",
                             },
                             body: JSON.stringify(postData)
                         })
@@ -129,73 +132,83 @@ const Register = () => {
     return (
         <>
             <Helmet> <title> Register </title></Helmet>
-          <div className="my-5">
-          <div className="bg-success text-white fs-2 text-center  m-auto text-uppercase fw-bolder py-3" style={{ width: "44%" }}> Register now  </div>
-            <form autoComplete='off' onSubmit={handleSubmit} className='p-5  mx-auto bg-dark p-4' style={{ width: "44%" }}>
-                <div className="relative  w-full ">
-                    <input type="email" name="email" id="floating_email" placeholder='Email address' className="form-control my-4" required />
-                </div>
-                <div className="relative  w-full ">
-                    <input type="password" name="password" id="floating_password" className="form-control my-4" placeholder='Password' required />
-                </div>
-                <div className="relative  w-full ">
-                    <input type="password" name="repeat_password" id="floating_repeat_password" placeholder='Confirm password' className="form-control my-4" required />
-                </div>
-                <div>
+            <div className="my-5">
+                <div className="bg-success text-white fs-2 text-center  m-auto text-uppercase fw-bolder py-3" style={{ width: "44%" }}> Register now  </div>
+                <form autoComplete='off' onSubmit={handleSubmit} className='p-5  mx-auto bg-dark p-4' style={{ width: "44%" }}>
                     <div className="relative  w-full ">
-                        <input type="text" name="first_name" id="floating_first_name" className="form-control my-4" placeholder='First name' required />
+                        <input type="email" name="email" id="floating_email" placeholder='Email address' className="form-control my-4" required />
                     </div>
                     <div className="relative  w-full ">
-                        <input type="text" name="last_name" id="floating_last_name" placeholder='Last name' className="form-control my-4" required />
+                        <input type="password" name="password" id="floating_password" className="form-control my-4" placeholder='Password' required />
                     </div>
-                </div>
-                <div>
                     <div className="relative  w-full ">
-                        <input type="number" pattern='[0-9]' name="phone_number" placeholder='Phone number' id="floating_phone" className="form-control my-4" required />
-
+                        <input type="password" name="repeat_password" id="floating_repeat_password" placeholder='Confirm password' className="form-control my-4" required />
                     </div>
-                    <div className="relative w-full ">
-                        <input type="text" name="company_name" id="floating_company" placeholder='Company (Ex. Google)' className="form-control my-4" required />
-
+                    <div>
+                        <div className="relative  w-full ">
+                            <input type="text" name="first_name" id="floating_first_name" className="form-control my-4" placeholder='First name' required />
+                        </div>
+                        <div className="relative  w-full ">
+                            <input type="text" name="last_name" id="floating_last_name" placeholder='Last name' className="form-control my-4" required />
+                        </div>
                     </div>
-                </div>
+                    <div>
+                        <div className="  w-full ">
+                        
+                            <PhoneInput
+                                name="phone_number" placeholder='Enter your phone number'
+                                id="floating_phone" className="form-control my-4"
+                                value={phoneNumber}
+                                onChange={setPhoneNumber} required />
+                        </div>
+                  
+                        <div className="relative w-full ">
+                            <input type="text" name="company_name" id="floating_company" placeholder='Company (Ex. Google)' className="form-control my-4" />
 
-                <div className="w-full">
-                    <div {...getRootProps()} className="rounded-2 text-center p-3 my-3" style={{ border: "2px solid lime", cursor: "pointer" }}>
-                        <input {...getInputProps()} />
-                        {
-                            fileStatus ? <p > Your file is selected file name is : {fileName.name} </p> : <>
-                                {
-                                    isDragActive ?
-                                        <ClipLoader color='white' className='p-3 text-center'></ClipLoader> :
-                                        <>
-                                            <BsCloudUploadFill className='fs-bolder fs-3 my-2 text-info'></BsCloudUploadFill>
-                                            <p>Drop the profile image here ...</p>
-
-                                        </>
-                                }
-                            </>
-                        }
-
-                    </div>
-                </div>
-
-
-                <button type="submit" className="text-white btn btn-success w-100">
-                    {registerLoad ? <ClipLoader color='white' className='pb-3'></ClipLoader> : "Register"}
-                </button>
-                <p className='my-4'>
-                    <p className='text-center fs-3 fw-bolder'> ---- Or you can ---- </p>
-                    <div className="d-flex flex-column my-2 w-full ">
-                        <div onClick={handleGoogleLogin} className="btn btn-outline-info text-white fw-bold my-2"> Register with Google </div>
-                        <div onClick={handleGitHubLogin} className="btn btn-outline-info text-white fw-bold my-2"> Register with GitHub </div>
+                        </div>
                     </div>
 
-                    <NavLink to="/login" className="text-decoration-none">Already have an account please <span className='text-info'> Login now</span> </NavLink>
-                </p>
-            </form>
+                    <div className="w-full">
+                        <div {...getRootProps()} className="rounded-2 text-center p-3 my-3" style={{ border: "2px solid lime", cursor: "pointer" }}>
+                            <input {...getInputProps()} />
+                            {
+                                fileStatus ? <p > Your file is selected file name is : {fileName.name} </p> : <>
+                                    {
+                                        isDragActive ?
+                                            <ClipLoader color='white' className='p-3 text-center'></ClipLoader> :
+                                            <>
+                                                <BsCloudUploadFill className='fs-bolder fs-3 my-2 text-info'></BsCloudUploadFill>
+                                                <p>Drop the profile image here ...</p>
 
-          </div>
+                                            </>
+                                    }
+                                </>
+                            }
+
+                        </div>
+                    </div>
+
+
+                    <button type="submit" className="text-white btn btn-outline-success w-100">
+                        {registerLoad ? <ClipLoader color='white' className='pb-3'></ClipLoader> : "Register"}
+                    </button>
+                    <p className='my-4'>
+                        <div className="dflex">
+                            <div className="fline"></div>
+                            <div className="rowtext"> Or you can </div>
+                            <div className="sline"></div>
+                        </div>
+
+                        <div className="d-flex flex-column my-2 w-full ">
+                            <div onClick={handleGoogleLogin} className="btn btn-outline-info text-white fw-bold my-2"> Register with Google </div>
+                            <div onClick={handleGitHubLogin} className="btn btn-outline-info text-white fw-bold my-2"> Register with GitHub </div>
+                        </div>
+
+                        <NavLink to="/login" className="text-decoration-none">Already have an account please <span className='text-info'> Login now</span> </NavLink>
+                    </p>
+                </form>
+
+            </div>
         </>
     );
 };
