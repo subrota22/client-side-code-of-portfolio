@@ -114,3 +114,17 @@ visibility: hidden;
   }
 }
 .sendBtn:hover > .sendSign {visibility: visible;}
+
+.userInfoCard{
+  border: 2px solid blue; margin: 0px 15px; border-radius: 10px; padding-top: 10px;
+  height: auto; width:30%;
+}
+
+#deleteUsersButtonHide{
+display: none;
+transition: display 2s;
+}
+#deleteUsersButtonShow{
+display: block;
+transition: display 2s;
+}

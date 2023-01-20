@@ -28,7 +28,7 @@ const Register = () => {
         setFileName(acceptedFiles[0]);
         setFileStatus(true);
     }, [])
-    console.log(phoneNumber);
+
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
     //
     const formData = new FormData();
@@ -48,7 +48,8 @@ const Register = () => {
         const first_name = event.target.first_name.value.trim();
         const last_name = event.target.last_name.value.trim();
         const name = first_name + " " + last_name;
-        const company_name = event.target.phone_number.value.trim();
+        const company_name = event.target.company_name.value.trim();
+        const joiningDate = new Date().toLocaleDateString() ;
         // console.log(email);
         fetch(`https://api.imgbb.com/1/upload?key=${imageBbKey}`, {
             method: "POST",
@@ -66,8 +67,9 @@ const Register = () => {
                             profile: imageLink,
                             phoneNumber: phoneNumber,
                             companyName: company_name,
+                            joiningDate:joiningDate,
                         }
-                        fetch("https://subrota-server.vercel.app/users", {
+                        fetch("https://subrota-server-subrota22.vercel.appusers", {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json",
@@ -91,6 +93,8 @@ const Register = () => {
                                         })
                                         .catch(error => toast.error(error.message));
 
+                                } else if(data?.message === "activeUser") {
+                                    toast.success("Already you have an account please log in now  !! ");
                                 }
                             })
                     })
@@ -106,6 +110,7 @@ const Register = () => {
         setRegisterLoad(true);
         loginWithGoogle()
             .then((result) => {
+                createNewUser(result?.user) ;
                 toast.success("Your are login successfully with Google account !!");
                 setRegisterLoad(false);
                 authUser(result.user?.email);
@@ -119,6 +124,7 @@ const Register = () => {
         setRegisterLoad(true);
         loginWithGitHub()
             .then((result) => {
+               createNewUser(result?.user) ;
                 toast.success("Your are login successfully with GitHub account !!");
                 setRegisterLoad(false);
                 authUser(result.user?.email);
@@ -135,6 +141,14 @@ const Register = () => {
             <div className="my-5">
                 <div className="bg-success text-white fs-2 text-center  m-auto text-uppercase fw-bolder py-3" style={{ width: "44%" }}> Register now  </div>
                 <form autoComplete='off' onSubmit={handleSubmit} className='p-5  mx-auto bg-dark p-4' style={{ width: "44%" }}>
+                <div>
+                        <div className="relative  w-full ">
+                            <input type="text" name="first_name" id="floating_first_name" className="form-control my-4" placeholder='First name' required />
+                        </div>
+                        <div className="relative  w-full ">
+                            <input type="text" name="last_name" id="floating_last_name" placeholder='Last name' className="form-control my-4" required />
+                        </div>
+                    </div>
                     <div className="relative  w-full ">
                         <input type="email" name="email" id="floating_email" placeholder='Email address' className="form-control my-4" required />
                     </div>
@@ -144,22 +158,16 @@ const Register = () => {
                     <div className="relative  w-full ">
                         <input type="password" name="repeat_password" id="floating_repeat_password" placeholder='Confirm password' className="form-control my-4" required />
                     </div>
-                    <div>
-                        <div className="relative  w-full ">
-                            <input type="text" name="first_name" id="floating_first_name" className="form-control my-4" placeholder='First name' required />
-                        </div>
-                        <div className="relative  w-full ">
-                            <input type="text" name="last_name" id="floating_last_name" placeholder='Last name' className="form-control my-4" required />
-                        </div>
-                    </div>
+                  
                     <div>
                         <div className="  w-full ">
                         
-                            <PhoneInput
+                            <PhoneInput autoComplete='off'
                                 name="phone_number" placeholder='Enter your phone number'
                                 id="floating_phone" className="form-control my-4"
                                 value={phoneNumber}
                                 onChange={setPhoneNumber} required />
+                                <p className='text-white'>PH number : {phoneNumber}</p>
                         </div>
                   
                         <div className="relative w-full ">

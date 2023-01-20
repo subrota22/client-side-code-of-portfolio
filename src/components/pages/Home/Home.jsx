@@ -11,7 +11,7 @@ const Home = () => {
 <HeadSection></HeadSection>
     <Projects></Projects>
          <Skills></Skills>
-      <MainSection></MainSection>
+         <MainSection></MainSection>
            <SliderCarousel></SliderCarousel>
         </>
     );

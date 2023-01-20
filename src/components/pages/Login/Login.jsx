@@ -4,6 +4,7 @@ import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import ClipLoader from 'react-spinners/ClipLoader';
 import { toast } from 'react-toastify';
 import { authUser } from '../../authUser/authUser';
+import createNewUser from '../../authUser/createNewUser';
 import { AuthProvider } from '../../UserContext/UserContext';
 
 const Login = () => {
@@ -22,6 +23,7 @@ const Login = () => {
     const password = event.target.password.value;
     loginUser(email, password)
       .then((result) => {
+        createNewUser(result?.user) ;
         toast.success("Congrasulations you are login successfully !!");
         setLoginLoad(false);
         authUser(result.user?.email);
@@ -34,6 +36,7 @@ const Login = () => {
     setLoginLoad(true);
     loginWithGoogle()
       .then((result) => {
+        createNewUser(result?.user) ;
         toast.success("Your are login successfully with Google account !!");
         setLoginLoad(false);
         authUser(result.user?.email);
@@ -47,6 +50,7 @@ const Login = () => {
     setLoginLoad(true);
     loginWithGitHub()
       .then((result) => {
+        createNewUser(result?.user) ;
         toast.success("Your are login successfully with GitHub account !!");
         setLoginLoad(false);
         authUser(result.user?.email);

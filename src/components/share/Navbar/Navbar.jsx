@@ -55,6 +55,15 @@ const Navbar = () => {
                                     Contact me
                                 </NavLink>
                             </li>
+                            {
+                                user?.email  === "subrota45278@gmail.com" &&
+                                <li className="nav-item">
+                                <NavLink  className="nav-link text-white" to="/manage-users">
+                                   Manage users 
+                                </NavLink>
+                            </li>
+
+                            }
                               <li className="nav-item dropdown">
                                 <a className="nav-link text-white dropdown-toggle" href="#dropdown"  rel='noreferrer' role="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
@@ -88,6 +97,15 @@ const Navbar = () => {
                                 Certifications
                                 </NavLink>
                                 </li>
+                                {
+                                    user?.uid && <>
+                                    <li>
+                               <NavLink  className="dropdown-item " to="/userInformations"> 
+                                Users
+                                </NavLink>
+                                </li>
+                                    </>  
+                                }
                                             <li>
                                         <hr className="dropdown-divider"/>
                                     </li>
@@ -107,13 +125,15 @@ const Navbar = () => {
                                             }
                           
                           {
-                                 user?.uid &&  <li>
+                                 user?.uid &&  <>
+                                 <li>
                                   <div className="dropdown-item btn btn-outline-info" onClick={() => logout()}>  
                                   <button className="btn btn-danger w-100 py-2">
                                   Log out 
                                   </button>
                                    </div>
                                         </li>
+                                 </>
                           }
                                             
                                           

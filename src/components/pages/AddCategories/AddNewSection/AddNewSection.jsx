@@ -5,7 +5,7 @@
 import React, { useCallback, useContext, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Helmet } from 'react-helmet';
-import { useLoaderData } from 'react-router-dom';
+import { Navigate, useLoaderData } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import ClipLoader from "react-spinners/ClipLoader";
@@ -68,6 +68,7 @@ const AddNewSection = () => {
                         if (res.status === 403) {
                             toast.warning("  😩 😩 You do have not access to manipulate this data. 😩 😩 ");
                             setnewSectionLoad(false);
+                            return <Navigate to="/"></Navigate>
                         } else {
                             return res.json();
                         }

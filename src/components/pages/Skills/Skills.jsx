@@ -1,7 +1,7 @@
 import { Typewriter } from 'react-simple-typewriter';
 import React, { useContext, useEffect, useState } from 'react';
 import HashLoader from 'react-spinners/HashLoader';
-import { NavLink } from 'react-router-dom';
+import { Navigate, NavLink } from 'react-router-dom';
 import { AuthProvider } from '../../UserContext/UserContext';
 import { BsFillTrash2Fill } from 'react-icons/bs';
 import { BiEditAlt } from 'react-icons/bi';
@@ -29,7 +29,7 @@ const Skills = () => {
             .then(data => {
                 setSkills(data.data);
                 setPageLoad(false);
-                setCount(data?.count)
+                setCount(data?.count);
             })
             .catch(error => console.log(error))
     }, [page, pageSize]);
@@ -47,7 +47,9 @@ const Skills = () => {
             .then(res => {
                 if (res.status === 403) {
                     toast.warning("  😩 😩 You do have not access to delete this data. 😩 😩 ");
+                    return <Navigate to="/"></Navigate>
                 } else {
+
                     return res.json();
                 }
             })
@@ -137,7 +139,7 @@ const Skills = () => {
                                             skill?.technology ? skill?.technology : "technology not found"
                                         }</h5>
                                         <h5 className="card-title"> Experience: {skill?.experience}</h5>
-                                        <p className="card-text"> Real time experience: {skill?.realTimeExperience.length > 250 ? skill?.realTimeExperience.slice(0 , 250) + "..." : skill?.realTimeExperience}</p>
+                                        <p className="card-text"> Real time experience: {skill?.realTimeExperience?.length > 250 ? skill?.realTimeExperience.slice(0 , 250) + "..." : skill?.realTimeExperience}</p>
                                         <p className="card-text"> Starting date: {skill?.startingDate ? skill?.startingDate : "starting date not found"}</p>
                                         <div className='text-center d-flex justify-content-around mt-5'>
                                             <div>
@@ -167,7 +169,7 @@ const Skills = () => {
                     }
 
                 </div>
-                {/* pagination  */}
+                {/* pagination start  */}
                 <div className="text-center">
 
                     {
@@ -201,12 +203,11 @@ const Skills = () => {
 
 
                     {/* page size set  */}
-                    <select className='btn btn-success text-white fs-5 fw-bold py-2 px-4 mx-3' onChange={(e) => setPageSize(e.target.value)}>
-                    <option className='text-info fw-bold' disabled> Select page size. </option>
+                    <select className='btn btn-success text-white fw-bold py-2 px-4 mx-3' onChange={(e) => setPageSize(e.target.value)}>
+                    <option className='text-info fw-bold'selected disabled> Select page size. </option>
                          <option value="2">2</option>
                          <option value="4">4</option>
-                         <option value="6" 
-                                  selected>6</option>
+                         <option value="6">6</option>
                          <option value="8">8</option>
                         <option value="10">10</option>
                         <option value="20">20</option>
@@ -224,6 +225,7 @@ const Skills = () => {
                    </select>
 
                 </div>
+                         {/* pagination end  */}
             </div>
             </div>
          }

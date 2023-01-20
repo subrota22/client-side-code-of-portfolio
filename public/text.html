@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        .div {
+            height: auto;
+            width: 80%;
+            background-color: #09053D;
+            color: white;
+            font-size: 17px;
+            padding: 12px;
+            border-radius: 12px;
+            margin: auto;
+            font-family: serif;
+            font-weight: bold;
+        }
+
+        .loadingContainer {
+            margin: auto;
+        }
+
+        .loadingButton {
+            height: 22px;
+            width: 22px;
+            border-radius: 50%;
+            border-bottom: 4px  dotted yellow;
+            border-top: 4px  dotted rgb(81, 255, 0);
+            border-left: 4px  dotted rgb(67, 22, 190);
+            border-right: 4px  dotted rgb(255, 0, 157);
+            animation: loading infinite forwards linear 2s;
+        }
+
+        .btnContent {
+            background-color: #09053D;
+            border-radius: 7px;
+            border: 3px  dashed rgba(44, 11, 163, 0.429);
+            padding: 8px 15px;
+            width: 88px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            margin: 7px;
+            box-shadow:  0 0 2px 2px lime;
+        }
+
+        @keyframes loading {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>text </title>
+</head>
+
+<body>
+
+    <div class="btnContent">
+        <div class="loadingContainer">
+            <div class="loadingButton"></div>
+        </div>
+    </div>
+
+    <div class="div">
+        <p> hello </p>
+        <a href="https://portfolio-of-subrota-chandra.firebaseapp.com/" target="_blank">
+
+            <img src="https://i.ibb.co/DLcFkNd/mylogo.png" alt="logo"
+                style="height: 80px; width: 120px; border-radius: 50%; display: inline-block; margin: 20px;" />
+
+        </a>
+    </div>
+</body>
+
+</html>

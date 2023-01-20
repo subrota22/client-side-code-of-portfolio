@@ -1,7 +1,7 @@
 import React from 'react';
 import { createContext } from 'react';
 import {
-    createUserWithEmailAndPassword, getAuth,
+    createUserWithEmailAndPassword, deleteUser, getAuth,
     GithubAuthProvider, GoogleAuthProvider,
     onAuthStateChanged,
     sendEmailVerification, sendPasswordResetEmail,
@@ -11,6 +11,7 @@ import {
 from "firebase/auth";
 import app from '../firebase.config/firebase.config';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 export const AuthProvider = createContext();
 const auth = getAuth(app);
 
@@ -50,6 +51,15 @@ const UserContext = ({ children }) => {
         setLoad(true) ;
         return sendPasswordResetEmail(auth, email);
     }
+    //delete current user account 
+const deleteCurrentUserAccount = () => {
+    
+deleteUser(auth.currentUser).then(() => {
+    toast.info("Your user account is deleted from our authentication system.") ;
+    }).catch((error) => {
+    toast.error(error?.message) ;
+    });
+}
     //user data 
   React.useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth , (userInfo) => {
@@ -76,7 +86,7 @@ const UserContext = ({ children }) => {
     const authInfo = {
         createNewUser, sendEmailVerify, loginUser, loginWithGoogle,
         loginWithGitHub, resetPassword , user , signOutUser , setUserData ,
-        updateUser , load , setLoad
+        updateUser , load , setLoad , deleteCurrentUserAccount
     };
     return (
         <>

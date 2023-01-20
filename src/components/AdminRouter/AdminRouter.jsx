@@ -20,13 +20,14 @@ const AdminRouter = ({children}) => {
 
                 if(res.status === 403 ) {
                     toast.warning("You do have not access to these components.");
+                    return <Navigate to="/" state={{from:location}} replace></Navigate>
                 } else{
                     return res.json() ;
                 }
             })
             .then(data => {setUserDaata(data); setPageLoad(false) ;})
             .catch(error => console.log(error))
-    }, [user?.email]);
+    }, [user?.email , location]);
 
     if(load  || pageLoad){
         return <>
@@ -38,7 +39,7 @@ const AdminRouter = ({children}) => {
    if(user && user?.uid && userData.role ==="admin" ){
    return children ;
    }
-   return <Navigate to="/" state={{from:location}} replace></Navigate>
+   return <Navigate to="/"></Navigate>
 };
 
 export default AdminRouter;

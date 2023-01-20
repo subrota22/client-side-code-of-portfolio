@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Helmet } from 'react-helmet';
-import { useLoaderData, useNavigate } from 'react-router-dom';
+import { Navigate, useLoaderData, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import ClipLoader from "react-spinners/ClipLoader";
@@ -39,6 +39,7 @@ const UpdateProject = () => {
             .then(res => {
                 if (res.status === 403) {
                     toast.warning("  😩 😩 You do have not access to delete this data. 😩 😩 ");
+                    return <Navigate to="/"></Navigate>
                 } else {
                     return res.json();
                 }

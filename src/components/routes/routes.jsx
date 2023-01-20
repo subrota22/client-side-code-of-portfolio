@@ -23,6 +23,9 @@ import UpdateProject from '../pages/UpdateCategories/UpdateProject/UpdateProject
 import UpdateSection from '../pages/UpdateCategories/UpdateSection/UpdateSection';
 import UpdateProfile from '../pages/UpdateProfile/UpdateProfile';
 import UpdateSkill from '../pages/UpdateSkill/UpdateSkill';
+import ManageUsers from '../pages/Users/ManageUsers/ManageUsers';
+import UpdateUsers from '../pages/Users/UpdateUsers/UpdateUsers';
+import UserInformation from '../pages/Users/UserInformation/UserInformation';
 import PrivateRouter from '../PrivateRouter/PrivateRouter';
 
 const routes = createBrowserRouter([
@@ -83,9 +86,36 @@ const routes = createBrowserRouter([
                 element: <PrivacyPolicy></PrivacyPolicy>
             },
             {
+                path: "/manage-users",
+
+                element: <PrivateRouter> <AdminRouter>
+                    <ManageUsers></ManageUsers>
+                    </AdminRouter></PrivateRouter>
+            },
+            {
+                path: "/update-user-informations/:id",
+                loader: ({ params }) =>
+                    fetch(`https://subrota-server-subrota22.vercel.appusersInfo/${params.id}`, {
+                        method: "GET",
+                        headers: {
+                            authentication: `Bearer ${localStorage.getItem("portfolio-token")} `
+                        }
+                    }).then(res => res.json())
+                        .then(data => data)
+                      ,
+                element: <PrivateRouter> <AdminRouter>
+                    <UpdateUsers></UpdateUsers>
+                    </AdminRouter></PrivateRouter>
+            },
+            {
                 path: "/blogs/",
 
                 element: <Blogs></Blogs>
+            },
+            {
+                path: "/userInformations/",
+
+                element: <PrivateRouter><UserInformation></UserInformation></PrivateRouter>
             },
             {
                 path: "/reference", element: <Refferall></Refferall>

@@ -2,7 +2,7 @@
 import React, { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Helmet } from 'react-helmet';
-import { useLoaderData, useNavigate } from 'react-router-dom';
+import { Navigate, useLoaderData, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import ClipLoader from "react-spinners/ClipLoader";
@@ -40,6 +40,7 @@ const UpdateSection = () => {
                 if (res.status === 403) {
                     toast.warning("  😩 😩 You do have not access to delete this data. 😩 😩 ");
                   sectionUpdateLoad(false) ;
+                  return <Navigate to="/"></Navigate>
                 } else {
                     return res.json();
                 }
@@ -79,7 +80,7 @@ const UpdateSection = () => {
         newUpdateProject[name] = value;
         Setinfo(newUpdateProject);
     }
-    console.log(info);
+
 
     return (
         <>

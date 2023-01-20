@@ -1,0 +1,37 @@
+.loadingContainer {
+    margin: auto;
+}
+
+.loadingButton {
+    height: 22px;
+    width: 22px;
+    border-radius: 50%;
+    border-bottom: 4px  dotted yellow;
+    border-top: 4px  dotted rgb(81, 255, 0);
+    border-left: 4px  dotted rgb(67, 22, 190);
+    border-right: 4px  dotted rgb(255, 0, 157);
+    animation: loading infinite forwards linear 2s;
+}
+
+.btnContent {
+    background-color: #09053D;
+    border-radius: 7px;
+    border: 3px  dashed rgba(44, 11, 163, 0.429);
+    padding: 8px 15px;
+    width: 88px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    margin: 7px;
+    box-shadow:  0 0 2px 2px lime;
+}
+
+@keyframes loading {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

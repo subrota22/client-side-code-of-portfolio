@@ -185,11 +185,10 @@ const ReferenceData = () => {
 
                     {/* page size set  */}
                     <select className='btn btn-success text-white fs-5 fw-bold py-2 px-4 mx-3' onChange={(e) => setPageSize(e.target.value)}>
-                    <option className='text-info fw-bold' disabled> Select page size. </option>
+                    <option className='text-info fw-bold' selected disabled> Select page size. </option>
                     <option value="2">2</option>
                          <option value="4">4</option>
-                         <option value="6" 
-                                  selected>6</option>
+                         <option value="6">6</option>
                          <option value="8">8</option>
                         <option value="10">10</option>
                         <option value="20">20</option>
