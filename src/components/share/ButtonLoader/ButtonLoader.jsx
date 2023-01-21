@@ -3,11 +3,10 @@ import "./ButtonLoader.css";
 const ButtonLoader = () => {
     return (
         <>
-            <div class="btnContent">
-                <div class="loadingContainer">
-                    <div class="loadingButton"></div>
-                </div>
-            </div>
+      
+           <div class="loadingButton"></div>
+             
+         
 
         </>
     );

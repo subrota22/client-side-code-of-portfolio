@@ -69,7 +69,7 @@ const Register = () => {
                             companyName: company_name,
                             joiningDate:joiningDate,
                         }
-                        fetch("https://subrota-server-subrota22.vercel.appusers", {
+                        fetch("https://subrota-server-subrota22.vercel.app/users", {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json",

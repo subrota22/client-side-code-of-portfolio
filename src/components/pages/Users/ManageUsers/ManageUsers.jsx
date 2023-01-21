@@ -24,14 +24,13 @@ const ManageUsers = () => {
     const [modalData, setmodalData] = useState();
     const [deleteConfirm, setDeleteConfirm] = useState("");
     const [singleUserData, setSingleUserData] = useState({});
+    const [allUsers , setAllUsers] = useState([]) ;
     const [sentLoad, setSentLoad] = useState(false);
-
-
     const navigate = useNavigate();
     const { user } = useContext(AuthProvider);
     React.useEffect(() => {
 
-        fetch(`https://subrota-server-subrota22.vercel.appusersInfo?page=${page}&size=${pageSize}`, {
+        fetch(`https://subrota-server-subrota22.vercel.app/usersInfo?page=${page}&size=${pageSize}`, {
             headers: {
                 authentication: `Bearer ${localStorage.getItem("portfolio-token")} `
             }
@@ -55,7 +54,7 @@ const ManageUsers = () => {
     //delete single user 
 
     const deleteSingleUser = (id) => {
-        fetch(`https://subrota-server-subrota22.vercel.appusersInfo/${id}`, {
+        fetch(`https://subrota-server-subrota22.vercel.app/usersInfo/${id}`, {
             method: "DELETE",
             headers: {
                 authentication: `Bearer ${localStorage.getItem("portfolio-token")} `
@@ -83,12 +82,10 @@ const ManageUsers = () => {
         setmodalData(reciveData);
         setShowModal(true);
     }
-    console.log(users);
-
 
     //delete all users
     const deleteAllUsers = () => {
-        fetch(`https://subrota-server-subrota22.vercel.appdeleteAllUsers/`, {
+        fetch(`https://subrota-server-subrota22.vercel.app/deleteAllUsers/`, {
             method: "DELETE",
             headers: {
                 authentication: `Bearer ${localStorage.getItem("portfolio-token")} `
@@ -118,12 +115,11 @@ const ManageUsers = () => {
             .catch(error => errorDeleteMessage(error));
     };
 
-    console.log(singleUserData)
+  
     //get single user data 
 
     const getUserInfo = (id) => {
-        console.log(id);
-        fetch(`https://subrota-server-subrota22.vercel.appusersInfo/${id}`, {
+        fetch(`https://subrota-server-subrota22.vercel.app/usersInfo/${id}`, {
             method: "GET",
             headers: {
                 authentication: `Bearer ${localStorage.getItem("portfolio-token")} `
@@ -154,7 +150,7 @@ const ManageUsers = () => {
             message: message,
         }
 
-        fetch(`https://subrota-server-subrota22.vercel.appsendSingleMail`, {
+        fetch(`https://subrota-server-subrota22.vercel.app/sendSingleMail`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -184,7 +180,73 @@ const ManageUsers = () => {
             .catch(error => toast.error(error));
     }
 
-    if (usersUpdateLoad) {
+ //get all users informations
+
+ React.useEffect(() => {
+    fetch(`https://subrota-server-subrota22.vercel.app/all-users`, {
+            method: "GET",
+            headers: {
+                authentication: `Bearer ${localStorage.getItem("portfolio-token")} `
+            }
+        })
+            .then(res => {
+                if (res.status === 403) {
+                    toast.warning("  😩 😩 You do have not access to delete this data. 😩 😩 ");
+                    navigate("/");
+                } else {
+                    return res.json();
+                }
+            })
+            .then(data => setAllUsers(data))
+            .catch(error => console.log(error));
+ }, [navigate]);
+
+    //send multile mail
+    const multipleEmailSent = (event) => {
+        setSentLoad(true);
+        event.preventDefault();
+        const subject = event.target.subject.value;
+        const message = event.target.message.value;
+        const postData = {
+            to: allUsers.map(emails => emails?.email),
+            subject: subject,
+            message: message,
+        }
+
+        fetch(`https://subrota-server-subrota22.vercel.app/sendMultipleleMail`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                authentication: `Bearer ${localStorage.getItem("portfolio-token")} `
+            },
+            body: JSON.stringify(postData)
+        })
+            .then(res => {
+                if (res.status === 403) {
+                    toast.warning("  😩 😩 You do have not access to delete this data. 😩 😩 ");
+                    navigate("/");
+                } else {
+                    return res.json();
+                }
+            })
+            .then(data => {
+                console.log(data);
+                if (data?.message === "sended") {
+                    toast.success("Your mail successfully sent to " + allUsers.map(emails => emails?.email));
+                    event.target.reset();
+                    setSentLoad(false);
+                }
+                else if (data?.message === "failed") {
+                    toast.success("Your mail failed to sent ");
+                }
+            })
+            .catch(error => toast.error(error));
+    }
+
+ //set all users emails
+
+
+  if (usersUpdateLoad) {
         return <PageLoad></PageLoad>
     }
     return (
@@ -204,7 +266,14 @@ const ManageUsers = () => {
                 users?.length !== 0 &&
                 <>
                     <div className="container h-auto w-auto  rounded-2 p-2 my-5" style={{ backgroundColor: "rgb(9, 5, 61 )" }}>
-                        <button className="btn btn-outline-danger mt-4" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete all users</button>
+                   <div className="d-flex flex-sm-column flex-md-row">
+                   <button className="btn btn-outline-danger mt-4" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete all users</button>
+                        <button type="button" className="btn btn-outline-primary mx-2 mt-4"
+                        data-bs-toggle="modal" data-bs-target="#multipleEmailSedingModal">
+                                  Mail all users
+                                 </button>
+                   </div>
+
 
                         <div className="d-flex justify-around">
 
@@ -275,15 +344,17 @@ const ManageUsers = () => {
                                                     <div className="bg-dark py-3 pb-3 text-center text-white">
                                                         <button type="button" className="btn btn-outline-primary mx-2" data-bs-dismiss="modal">Cancel</button>
 
-                                                     { sentLoad !== true ? <button type="submit"
-                                                            className="btn btn-outline-success  mx-2">
+                                                     <button type="submit"
+                                                            className="btn btn-outline-success w-50 text-center mx-2">
                                                             
-                                                        <span> Send mail <AiOutlineSend className='text-primary fs-3 mx-2'></AiOutlineSend></span>
-                                                            
+                                                       {
+                                                       sentLoad !== true ? <span> Send mail <AiOutlineSend className='text-primary fs-3 mx-2'></AiOutlineSend></span>
+                                                       : <ButtonLoader></ButtonLoader>
+                                                            }
                                                         </button>
-                                                           :
-                                                           <ButtonLoader></ButtonLoader>
-                                                         }
+                                                           
+                                                          
+                                                        
 
 
                                                     </div>
@@ -294,6 +365,65 @@ const ManageUsers = () => {
 
                                 </div>
                             }
+
+  {/* multiple email sending modal */}
+
+  {
+                                <div>
+
+                                    <div className="modal rounded" id="multipleEmailSedingModal" tabindex="-1" aria-labelledby="multipleEmailSedingModalLabel" aria-hidden="true">
+                                        <div className="modal-dialog">
+                                            <div className="modal-content">
+                                                <div className="modal-header bg-dark text-white">
+                                                    <h1 className="modal-title  text-primary fs-5" id="multipleEmailSedingModalLabel"> Send mail to all users </h1>
+                                                    <button type="button" className="btn btn-outline-primary  fs-6 fw-bolder" data-bs-dismiss="modal" aria-label="Close">
+                                                        <i class="fa-solid fa-xmark px-1"></i>
+                                                    </button>
+                                                </div>
+                                                <form onSubmit={multipleEmailSent} autoComplete='off'>
+
+                                                    <div className="modal-body bg-dark text-primary">
+
+                                                        <div className='my-4'>
+                                                            <input type="text" placeholder='Enter the subject' className='form-control'
+                                                                autoComplete='off' name="subject" required />
+                                                        </div>
+                                                        <div className="mt-3">
+                                                            <textarea placeholder='Enter your message' cols="5" rows="5" className='form-control '
+                                                                name="message" autoComplete='off' required />
+                                                        </div>
+
+                                                    </div>
+                                                    <div className="bg-dark py-3 pb-3 text-center text-white">
+                                                        <button type="button" className="btn btn-outline-primary mx-2" data-bs-dismiss="modal">Cancel</button>
+
+                                                     <button type="submit"
+                                                            className="btn btn-outline-success w-50 text-center mx-2">
+                                                            
+                                                       
+                                                     
+                                                        <span className='d-flex justify-content-around'><span> Send mail</span> 
+                                                        <span><AiOutlineSend className='text-primary fs-3 mx-2'></AiOutlineSend></span>
+                                                     <span>  {sentLoad !== true ? undefined :  <ButtonLoader></ButtonLoader> }</span>
+                                                       </span>
+                                                      
+                                                            
+                                                        </button>
+                                                           
+                                                          
+                                                        
+
+
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            }
+
+
 
                             <div className='text-center mx-auto fs-2 fw-bold  p-4 rounded-2'>
                                 {

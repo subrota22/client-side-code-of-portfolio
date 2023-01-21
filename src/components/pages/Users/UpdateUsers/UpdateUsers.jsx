@@ -38,7 +38,7 @@ const UpdateUsers = () => {
             .then(data => {
                         const imageLink = data?.data?.display_url;
                       
-                        fetch(`https://subrota-server-subrota22.vercel.appusersInfo/${usersData?._id}`, {
+                        fetch(`https://subrota-server-subrota22.vercel.app/usersInfo/${usersData?._id}`, {
                             method: "PUT",
                             headers: {
                                 "Content-Type": "application/json",

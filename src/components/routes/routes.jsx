@@ -95,7 +95,7 @@ const routes = createBrowserRouter([
             {
                 path: "/update-user-informations/:id",
                 loader: ({ params }) =>
-                    fetch(`https://subrota-server-subrota22.vercel.appusersInfo/${params.id}`, {
+                    fetch(`https://subrota-server-subrota22.vercel.app/usersInfo/${params.id}`, {
                         method: "GET",
                         headers: {
                             authentication: `Bearer ${localStorage.getItem("portfolio-token")} `

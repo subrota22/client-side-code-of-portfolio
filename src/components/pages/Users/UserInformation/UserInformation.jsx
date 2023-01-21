@@ -13,7 +13,7 @@ const UserInformation = () => {
     const pages = Math.ceil(count / pageSize);
 
     React.useEffect(() => {
-        fetch(`https://subrota-server-subrota22.vercel.appusersInfo?page=${page}&size=${pageSize}`, {
+        fetch(`https://subrota-server-subrota22.vercel.app/usersInfo?page=${page}&size=${pageSize}`, {
             headers: {
                 authentication: `Bearer ${localStorage.getItem("portfolio-token")} `
             }
