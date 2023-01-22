@@ -5,13 +5,13 @@ import { toast } from 'react-toastify';
 import ClipLoader from "react-spinners/ClipLoader";
 import { BsCloudUploadFill } from "react-icons/bs";
 import { AuthProvider } from '../../../UserContext/UserContext';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 const AddNewProject = () => {
     const [fileName, setFileName] = useState({});
     const [fileStatus, setFileStatus] = useState(false);
     const [addProjectLoad, setaddProjectLoad] = useState(false);
     const {user} = useContext(AuthProvider) ;
-   
+   const   naviagate = useNavigate() ;
     const onDrop = useCallback(acceptedFiles => {
         // Do something with the files
         setFileName(acceptedFiles[0]);
@@ -65,7 +65,7 @@ const AddNewProject = () => {
                                 if (res.status === 403) {
                                     toast.warning(" 😩 😩 You do have not access to manipulate this data. 😩 😩 ");
                                     setaddProjectLoad(false) ;
-                                    return <Navigate to="/"></Navigate>
+                                    naviagate("/") ;
                                 } else {
                                     return res.json();
                                 }

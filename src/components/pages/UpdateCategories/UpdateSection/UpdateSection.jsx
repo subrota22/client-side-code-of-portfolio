@@ -2,7 +2,7 @@
 import React, { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Helmet } from 'react-helmet';
-import { Navigate, useLoaderData, useNavigate } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import ClipLoader from "react-spinners/ClipLoader";
@@ -40,7 +40,8 @@ const UpdateSection = () => {
                 if (res.status === 403) {
                     toast.warning("  😩 😩 You do have not access to delete this data. 😩 😩 ");
                   sectionUpdateLoad(false) ;
-                  return <Navigate to="/"></Navigate>
+                  naviagate("/") ;
+                  
                 } else {
                     return res.json();
                 }
@@ -59,7 +60,14 @@ const UpdateSection = () => {
                         projectImage: projectImage
                     })
                 })
-                    .then(res => res.json())
+                    .then(res => {
+                        if (res.status === 403) {
+                            toast.warning("  😩 😩 You do have not access to update this data. 😩 😩 ");
+                            naviagate("/") ;
+                        } else {
+                            return res.json();
+                        }
+                    })
                     .then(data => {
                         if (data.acknowledged) {
                             toast.success("Congrasulations your section data is updated sucessfully !! ");

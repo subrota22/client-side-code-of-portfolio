@@ -22,15 +22,12 @@ const ReferenceData = () => {
     const pages = Math.ceil(count /pageSize);
 
     React.useEffect(() => {
-        fetch(`https://subrota-server.vercel.app/references?page=${page}&size=${pageSize}`,{
-            headers: {
-                authentication: `Bearer ${localStorage.getItem("portfolio-token")} `
-            }
-        })
+        
+        fetch(`https://subrota-server-subrota22.vercel.app/referallInformation?page=${page}&size=${pageSize}`)
             .then(res => res.json())
             .then(data => {
                 setPageLoad(false);
-                setAllReferences(data.data);
+                setAllReferences(data?.data);
                 setCount(data?.count) ;
             }
             );
@@ -77,7 +74,7 @@ const ReferenceData = () => {
             </div>
         </>
     }
-
+console.log(">>---->>--->" , allReferences );
     return (
  <>
             <Helmet><title>All reference info </title></Helmet>
@@ -148,8 +145,8 @@ const ReferenceData = () => {
                 </div>
             </div>
 
-      
-                    {/* pagination  */}
+{/*       
+                    pagination  */}
                     <div className="text-center my-4">
 
                     {

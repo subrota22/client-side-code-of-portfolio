@@ -5,7 +5,7 @@
 import React, { useCallback, useContext, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Helmet } from 'react-helmet';
-import { Navigate, useLoaderData } from 'react-router-dom';
+import {  useLoaderData, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import ClipLoader from "react-spinners/ClipLoader";
@@ -18,8 +18,7 @@ const AddNewSection = () => {
     const { user } = useContext(AuthProvider);
     const detailsData = useLoaderData();
 
-    // const naviagate = useNavigate();
-
+    const naviagate = useNavigate();
     const onDrop = useCallback(acceptedFiles => {
         // Do something with the files
         setFileName(acceptedFiles[0]);
@@ -68,7 +67,7 @@ const AddNewSection = () => {
                         if (res.status === 403) {
                             toast.warning("  😩 😩 You do have not access to manipulate this data. 😩 😩 ");
                             setnewSectionLoad(false);
-                            return <Navigate to="/"></Navigate>
+                            naviagate("/") ;
                         } else {
                             return res.json();
                         }

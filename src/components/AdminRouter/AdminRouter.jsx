@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Navigate, useLocation } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import HashLoader from 'react-spinners/HashLoader';
 import { toast } from 'react-toastify';
 import { AuthProvider } from '../UserContext/UserContext';
@@ -8,7 +8,7 @@ const AdminRouter = ({children}) => {
     const {user , load } = useContext(AuthProvider) ;
     const location = useLocation() ;
     const [userData, setUserDaata] = useState([]);
-    // console.log(userData);
+    const   naviagate = useNavigate() ;
     const [pageLoad , setPageLoad] = useState(true) ;
     React.useEffect(() => {
         fetch(`https://subrota-server.vercel.app/user/${user?.email}`,{
@@ -38,8 +38,9 @@ const AdminRouter = ({children}) => {
     }
    if(user && user?.uid && userData.role ==="admin" ){
    return children ;
+   } else {
+   naviagate("/") ;
    }
-   return <Navigate to="/"></Navigate>
 };
 
 export default AdminRouter;

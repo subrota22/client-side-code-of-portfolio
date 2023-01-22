@@ -83,7 +83,13 @@ const UpdateUsers = () => {
         Setinfo(newUpdateProject);
     }
 
-
+    // const objects = [
+    //     ObjectId("51ee3966e4b056fe8f074f48"), 
+    //     ObjectId("51ee3966e4b056fe8f074f4a"), 
+    //     ObjectId("51ee3966e4b056fe8f074f4b") 
+    // ];
+    
+    // db.collection.deleteMany({_id: { $in: objects}});
     return (
         <>
             <Helmet> <title> Update user  </title></Helmet>
@@ -92,7 +98,7 @@ const UpdateUsers = () => {
                 <form autoComplete='off' onSubmit={handleSubmit} className='p-5  mx-auto bg-dark p-4' style={{ width: "44%" }}>
               
                         <div className="relative  w-full ">
-                            <input type="text" name="first_name" onChange={handleSubmitedInputData} defaultValue={usersData?.name} id="floating_first_name" className="form-control my-4" placeholder='First name'/>
+                            <input type="text" name="name" onChange={handleSubmitedInputData} defaultValue={usersData?.name} id="floating_first_name" className="form-control my-4" placeholder='First name'/>
                         </div>
                      
                  

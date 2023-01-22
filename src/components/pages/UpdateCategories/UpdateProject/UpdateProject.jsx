@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Helmet } from 'react-helmet';
-import { Navigate, useLoaderData, useNavigate } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import ClipLoader from "react-spinners/ClipLoader";
@@ -12,7 +12,7 @@ const UpdateProject = () => {
     const [projectUpdateLoad, setProjectUpdateLoad] = useState(false);
     const projectsData = useLoaderData();
     const [info, Setinfo] = useState(projectsData);
-    const naviagate = useNavigate();
+    const navigate = useNavigate();
 
     const onDrop = useCallback(acceptedFiles => {
         // Do something with the files
@@ -38,8 +38,8 @@ const UpdateProject = () => {
         })
             .then(res => {
                 if (res.status === 403) {
-                    toast.warning("  😩 😩 You do have not access to delete this data. 😩 😩 ");
-                    return <Navigate to="/"></Navigate>
+                    toast.warning("  😩 😩 You do have not access. 😩 😩 ");
+                    navigate("/profile") ;
                 } else {
                     return res.json();
                 }
@@ -60,8 +60,9 @@ const UpdateProject = () => {
                 })
                     .then(res => {
                         if (res.status === 403) {
-                            toast.warning("  😩 😩 You do have not access to delete this data. 😩 😩 ");
+                            toast.warning("  😩 😩 You do have not access to update this data. 😩 😩 ");
                             setProjectUpdateLoad(false) ;
+                            navigate("/profile") ;
                         } else {
                             return res.json();
                         }
@@ -70,7 +71,7 @@ const UpdateProject = () => {
                         if (data.acknowledged) {
                             toast.success("Congrasulations your project data is updated sucessfully !! ");
                             setProjectUpdateLoad(false);
-                            naviagate("/");
+                            navigate("/");
                         }
                     })
             })

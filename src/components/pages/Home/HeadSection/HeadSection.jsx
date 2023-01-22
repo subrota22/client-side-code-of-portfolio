@@ -9,7 +9,7 @@ const HeadSection = () => {
     setInterval(() => {
      let time = new Date().toLocaleTimeString() ;
      let displayTime = document.getElementById("time") ;
-     displayTime.innerHTML = time ;
+     displayTime.innerText = time ;
     } , 1000)
 
     return (
