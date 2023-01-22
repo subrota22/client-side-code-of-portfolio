@@ -264,7 +264,7 @@ const ManageUsers = () => {
                 users?.length !== 0 &&
                 <>
                     <div className="container h-auto w-auto  rounded-2 p-2 my-5" style={{ backgroundColor: "rgb(9, 5, 61 )" }}>
-                   <div className="d-flex flex-sm-column flex-md-row">
+                   <div className="d-flex flex-sm-column flex-md-row justify-content-between">
                    <button className="btn btn-outline-danger mt-4" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete all users</button>
                         <button type="button" className="btn btn-outline-primary mx-2 mt-4"
                         data-bs-toggle="modal" data-bs-target="#multipleEmailSedingModal">

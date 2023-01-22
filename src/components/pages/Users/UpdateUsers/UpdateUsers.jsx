@@ -98,7 +98,7 @@ const UpdateUsers = () => {
                 <form autoComplete='off' onSubmit={handleSubmit} className='p-5  mx-auto bg-dark p-4' style={{ width: "44%" }}>
               
                         <div className="relative  w-full ">
-                            <input type="text" name="name" onChange={handleSubmitedInputData} defaultValue={usersData?.name} id="floating_first_name" className="form-control my-4" placeholder='First name'/>
+                            <input type="text" name="name" onChange={handleSubmitedInputData} defaultValue={usersData?.name} id="floating_first_name" className="form-control my-4" placeholder='Enter name like johan doe'/>
                         </div>
                      
                  
@@ -127,7 +127,8 @@ const UpdateUsers = () => {
                         </div>
 
                         
-                        <div className="relative w-full ">
+                        <div className="relative w-full">
+                            <label htmlFor="joning date">Joining date </label>
                             <input type="date" name="joiningDate" onChange={handleSubmitedInputData} defaultValue={usersData?.joiningDate} id="floating_date" placeholder='Enter your joining date ' className="form-control my-4" />
                         </div>
 
