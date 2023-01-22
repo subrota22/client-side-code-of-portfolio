@@ -245,7 +245,6 @@ const ManageUsers = () => {
 
  //set all users emails
 
-
   if (usersUpdateLoad) {
         return <PageLoad></PageLoad>
     }
@@ -261,7 +260,6 @@ const ManageUsers = () => {
                 >
                 </DeleteConformation>}
 
-
             {
                 users?.length !== 0 &&
                 <>
@@ -273,11 +271,8 @@ const ManageUsers = () => {
                                   Mail all users
                                  </button>
                    </div>
-
-
                         <div className="d-flex justify-around">
-
-                            {
+                             {
                                 <div>
 
                                     <div className="modal" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
@@ -343,21 +338,14 @@ const ManageUsers = () => {
                                                     </div>
                                                     <div className="bg-dark py-3 pb-3 text-center text-white">
                                                         <button type="button" className="btn btn-outline-primary mx-2" data-bs-dismiss="modal">Cancel</button>
-
-                                                     <button type="submit"
+                                                        <button type="submit"
                                                             className="btn btn-outline-success w-50 text-center mx-2">
-                                                            
-                                                       {
-                                                       sentLoad !== true ? <span> Send mail <AiOutlineSend className='text-primary fs-3 mx-2'></AiOutlineSend></span>
-                                                       : <ButtonLoader></ButtonLoader>
-                                                            }
+                                                        <span className='d-flex justify-content-around'><span> Send mail</span> 
+                                                        <span><AiOutlineSend className='text-primary fs-3 mx-2'></AiOutlineSend></span>
+                                                     <span>  {sentLoad !== true ? undefined :  <ButtonLoader></ButtonLoader> }</span>
+                                                       </span> 
                                                         </button>
-                                                           
-                                                          
-                                                        
-
-
-                                                    </div>
+                                                      </div>
                                                 </form>
                                             </div>
                                         </div>
@@ -399,22 +387,12 @@ const ManageUsers = () => {
 
                                                      <button type="submit"
                                                             className="btn btn-outline-success w-50 text-center mx-2">
-                                                            
-                                                       
-                                                     
                                                         <span className='d-flex justify-content-around'><span> Send mail</span> 
                                                         <span><AiOutlineSend className='text-primary fs-3 mx-2'></AiOutlineSend></span>
                                                      <span>  {sentLoad !== true ? undefined :  <ButtonLoader></ButtonLoader> }</span>
-                                                       </span>
-                                                      
-                                                            
+                                                       </span> 
                                                         </button>
-                                                           
-                                                          
-                                                        
-
-
-                                                    </div>
+                                                   </div>
                                                 </form>
                                             </div>
                                         </div>
@@ -422,10 +400,7 @@ const ManageUsers = () => {
 
                                 </div>
                             }
-
-
-
-                            <div className='text-center mx-auto fs-2 fw-bold  p-4 rounded-2'>
+                          <div className='text-center mx-auto fs-2 fw-bold  p-4 rounded-2'>
                                 {
                                     <Typewriter
                                         words={[`Welcome ${user?.displayName ? user?.displayName : "admin"}`, 'You can manage all', 'users information', 'from here', 'click edit icon to edit', 'click delete icon to delete', " Let's start"]}
@@ -559,8 +534,6 @@ const ManageUsers = () => {
 
                 </>
             }
-
-
             {
                 users?.length === 0 &&
                 <div style={{ margin: "158px 78px" }} className='text-center mx-auto fs-2 fw-bold styleHeadOfContent p-4 rounded-2'>
