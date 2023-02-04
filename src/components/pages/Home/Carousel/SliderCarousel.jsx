@@ -126,7 +126,7 @@ export const SliderCarousel = () => {
                     {
                         //My best projects that I made in 20/10/2022
                         <Typewriter
-                            words={['My best projects', 'images', 'are here']}
+                            words={['My best projects', 'images and links', 'are here']}
                             loop={Infinity}
                             cursor
                             cursorStyle='_'

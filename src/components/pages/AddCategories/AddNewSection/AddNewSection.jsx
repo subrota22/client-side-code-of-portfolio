@@ -67,7 +67,7 @@ const AddNewSection = () => {
                         if (res.status === 403) {
                             toast.warning("  😩 😩 You do have not access to manipulate this data. 😩 😩 ");
                             setnewSectionLoad(false);
-                            naviagate("/") ;
+                            naviagate("/login") ;
                         } else {
                             return res.json();
                         }

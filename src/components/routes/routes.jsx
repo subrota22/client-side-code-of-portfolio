@@ -12,6 +12,7 @@ import Details from '../pages/Details/Details';
 import Home from '../pages/Home/Home';
 import Login from '../pages/Login/Login';
 import Certifications from '../pages/OtherPages/Certifications/Certifications';
+import SkillMarks from '../pages/OtherPages/SkillMarks/SkillMarks';
 import PageError from '../pages/PageError/PageError';
 import PrivacyPolicy from '../pages/PrivacyPolicy/PrivacyPolicy';
 import Profile from '../pages/Profile/Profile';
@@ -91,6 +92,11 @@ const routes = createBrowserRouter([
                 element: <PrivateRouter> <AdminRouter>
                     <ManageUsers></ManageUsers>
                     </AdminRouter></PrivateRouter>
+            },
+            {
+                path: "/skill-marks",
+
+                element: <SkillMarks></SkillMarks>
             },
             {
                 path: "/update-user-informations/:id",

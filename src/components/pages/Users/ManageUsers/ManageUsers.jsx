@@ -224,7 +224,7 @@ const ManageUsers = () => {
             .then(res => {
                 if (res.status === 403) {
                     toast.warning("  😩 😩 You do have not access to delete this data. 😩 😩 ");
-                    navigate("/");
+                    navigate("/login");
                 } else {
                     return res.json();
                 }
@@ -341,8 +341,7 @@ const ManageUsers = () => {
                                                         <button type="submit"
                                                             className="btn btn-outline-success w-50 text-center mx-2">
                                                         <span className='d-flex justify-content-around'><span> Send mail</span> 
-                                                        <span><AiOutlineSend className='text-primary fs-3 mx-2'></AiOutlineSend></span>
-                                                     <span>  {sentLoad !== true ? undefined :  <ButtonLoader></ButtonLoader> }</span>
+                                                        <span>  {sentLoad === true ?   <ButtonLoader></ButtonLoader> :  <span><AiOutlineSend className='text-primary fs-3 mx-2'></AiOutlineSend></span> }</span>
                                                        </span> 
                                                         </button>
                                                       </div>
@@ -386,10 +385,11 @@ const ManageUsers = () => {
                                                         <button type="button" className="btn btn-outline-primary mx-2" data-bs-dismiss="modal">Cancel</button>
 
                                                      <button type="submit"
-                                                            className="btn btn-outline-success w-50 text-center mx-2">
-                                                        <span className='d-flex justify-content-around'><span> Send mail</span> 
-                                                        <span><AiOutlineSend className='text-primary fs-3 mx-2'></AiOutlineSend></span>
-                                                     <span>  {sentLoad !== true ? undefined :  <ButtonLoader></ButtonLoader> }</span>
+                                                            className="btn btn-outline-success w-50 text-center mx-2 ps-5">
+                                                        <span className='d-flex justify-content-between'><span> Send mail</span> 
+                                                    
+                                                     <span>  {sentLoad === true ?   <ButtonLoader></ButtonLoader> :  <span><AiOutlineSend className='text-primary fs-3 mx-2'></AiOutlineSend></span> }</span>
+                                                       
                                                        </span> 
                                                         </button>
                                                    </div>

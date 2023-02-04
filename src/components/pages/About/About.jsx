@@ -109,7 +109,7 @@ const About = () => {
                 <div className='text-center fs-2 fw-bold text-info styleHeadOfContent my-5 px-5 py-2 text-uppercase'>
                     {
                         <Typewriter
-                            words={['Welcome in ', 'my about ', 'page thanks', 'for your interent', 'to know about me !!']}
+                            words={['Welcome in ', 'my about ', 'page thanks', 'for your interest', 'to know about me !!']}
                             loop={Infinity}
                             cursor
                             cursorStyle='_'
@@ -125,7 +125,7 @@ const About = () => {
                             <img src={data?.adminImage ? data?.adminImage : "https://i.ibb.co/RSCmwXf/projectImagenot.jpg"} className="card-img-top rounded" alt="Subrota chandra" style={{height:"340px" , width:"100%"}}/>
                             <div className="card-body">
                                 <h5 className="card-title">Name : {data?.name ? data?.name : "name not found"} </h5>
-                                <p className="card-text"> About informations : {data?.aboutText ? data?.aboutText : "text not found"} </p>
+                                <p className="card-text"> Skills and qualifications : {data?.aboutText ? data?.aboutText : "text not found"} </p>
                                 <p className="card-text"> Publish date : {data?.saveDate ? data?.saveDate : "save date not found"} </p>
 
                                 <div className="d-flex justify-content-around my-4">

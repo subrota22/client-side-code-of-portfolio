@@ -1,8 +1,9 @@
-
 import './App.css';
 import { RouterProvider } from 'react-router-dom';
 import routes from './components/routes/routes';
 import { ToastContainer } from 'react-toastify';
+import CustomCursor from 'custom-cursor-react';
+import 'custom-cursor-react/dist/index.css';
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-photo-view/dist/react-photo-view.css';
 import 'react-slider-awesome/dist/index.css';
@@ -14,16 +15,15 @@ import FadeLoader from 'react-spinners/FadeLoader';
 //NOTE : simply install react-particles and tsparticles to use tsparticles
 function App() {
   const particlesInit = useCallback(async engine => {
-
-    // you can initiate the tsParticles instance (engine) here, adding custom shapes or presets
-    // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
-    // starting from v2 you can add only the features you need reducing the bundle size
-    await loadFull(engine);
+ await loadFull(engine);
 }, []);
 
 const particlesLoaded = useCallback(async container => {
     await console.log(container);
 }, []);
+
+//animated card
+
   return (
     <>
         <ToastContainer />
@@ -94,6 +94,21 @@ const particlesLoaded = useCallback(async container => {
                  detectRetina: true,
             }}
         />
+
+<CustomCursor
+      targets={['.nav-link' , '.hideBtn' , ".cursorEffect"]}
+      customClass='custom-cursor'
+      dimensions={40}
+      strokeColor="#DFDFDF"
+      fill='#DFDFDF'
+      smoothness={{
+        movement: 0.2,
+        scale: 0.1,
+        opacity: 0.1,
+      }}
+      targetOpacity={0.5}
+    />
+
     <RouterProvider router={routes} fallbackElement={ 
 
 <div style={{margin:"20% 50%"}}><FadeLoader color="#36d7b7"  /></div>

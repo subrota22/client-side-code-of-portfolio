@@ -65,7 +65,7 @@ const AddNewProject = () => {
                                 if (res.status === 403) {
                                     toast.warning(" 😩 😩 You do have not access to manipulate this data. 😩 😩 ");
                                     setaddProjectLoad(false) ;
-                                    naviagate("/") ;
+                                    naviagate("/login") ;
                                 } else {
                                     return res.json();
                                 }

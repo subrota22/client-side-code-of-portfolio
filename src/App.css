@@ -131,3 +131,36 @@ animation: textLine infinite 2s alternate;
     border: none;
   } 
  }
+
+ .link{
+height: 58px;
+width: 62px;
+background-color: blueviolet
+ }
+ .hoverEffect:hover{
+ transform: scale(0.8);
+ transition-duration: 2s;
+ }
+ .contactInfo ul li {
+  list-style-type: none;
+  list-style-position: inside;
+  margin: 14px 10px ;
+  font-size: 20px;
+  font-weight: bolder;
+ }
+ .contactInfo ul li  a{
+  text-decoration: none;
+  color: white;
+ }
+ .contactInfo ul li  span{
+  height:45px;
+  width: 45px;
+  border-radius: 50%;
+  background-color: #EE0BB7;
+  padding:6px 8px;
+  margin: 10px;
+ }
+ .contactInfo ul li:hover >  span{
+  background-color:#0B68EE;
+  transition-duration: 1s;
+ }

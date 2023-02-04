@@ -1,4 +1,4 @@
-
+@import "~@sl-codeblaster/react-3d-animated-card/dist/index.css";
 .navBg{
   background-color: rgba(0, 0, 255, 0.2);
   padding: 25px 0px;
@@ -69,7 +69,6 @@ width: 50%;
 margin: auto;
 margin-top: 45px;
 margin-bottom: 45px;
-
 }
 
 .cardBackground{

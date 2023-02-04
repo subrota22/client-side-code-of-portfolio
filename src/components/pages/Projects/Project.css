@@ -9,3 +9,13 @@
 #floating_phone{
     border: none;
 }
+#time{
+animation: time infinite alternate linear forwards 1s;
+}
+@keyframes time {
+    from{
+       color: white;
+    }to{
+        color:lime;
+    }
+}

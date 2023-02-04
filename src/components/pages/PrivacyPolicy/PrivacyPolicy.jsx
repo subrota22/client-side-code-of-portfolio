@@ -4,7 +4,7 @@ const PrivacyPolicy = () => {
     return (
         <>
         <Helmet> <title>Privacy policy </title></Helmet>
-        <div className="text-white fs-5 fw-bold">
+<div className="text-white fs-6 fw-bold my-4">
             
     <h2 style={{ "textAlign": "center"}}><b>PRIVACY POLICY</b></h2>
     <p>Effective date: 2022-12-10</p>
