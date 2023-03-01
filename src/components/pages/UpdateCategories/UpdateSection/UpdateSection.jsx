@@ -62,8 +62,9 @@ const UpdateSection = () => {
                 })
                     .then(res => {
                         if (res.status === 403) {
-                            toast.warning("  😩 😩 You do have not access to update this data. 😩 😩 ");
-                            naviagate("/") ;
+                            toast.warning(" 😩 😩 You do have not access to manipulate this data. 😩 😩 ");
+                            setsectionUpdateLoad(false) ;
+                            naviagate("/login") ;
                         } else {
                             return res.json();
                         }

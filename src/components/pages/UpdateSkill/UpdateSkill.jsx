@@ -36,7 +36,15 @@ const UpdateSkill = () => {
             method: "POST",
             body: formData
         })
-            .then(res => res.json())
+            .then(res => {
+                if (res.status === 403) {
+                    toast.warning(" 😩 😩 You do have not access to manipulate this data. 😩 😩 ");
+                    naviagate("/login") ;
+                } else {
+                    return res.json();
+                }
+
+            })
             .then(data => {
                 const technologyImage = data.data?.display_url ? data.data?.display_url : skilltsData?.projectImage;
 

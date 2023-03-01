@@ -10,7 +10,6 @@ import DeleteConformation from '../../share/DeleteConformation/DeleteConformatio
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import errorDeleteMessage from '../../share/deleteMessage/errorDeleteMessage';
 import successDeleteMessage from '../../share/deleteMessage/successDeleteMessage';
-import ShowCardAnimated  from 'react-animated-3d-card';
 const Skills = () => {
     const [skills, setSkills] = useState([]);
     const [pageLoad, setPageLoad] = useState(true);
@@ -123,51 +122,51 @@ const Skills = () => {
                             {
                                 skills.map(skill =>
                                     <div className="col col-12 col-sm-12 col-md-6 col-lg-4 my-3 " key={skill._id}>
-                                        <ShowCardAnimated>
-                                      <>
-                                      <div className="card h-100 bg-dark text-white">
+       
+                                            <>
+                                                <div className="card skillCard h-100 bg-dark text-white">
 
-<PhotoProvider>
-    <PhotoView src={skill?.technologyImage ? skill?.technologyImage : "https://i.ibb.co/RSCmwXf/imagenot.jpg"}>
-        <img src={skill?.technologyImage ? skill?.technologyImage : "https://i.ibb.co/RSCmwXf/imagenot.jpg"}
-            className="w-100 projectImage" style={{ height: "250px" }}
-            alt={skill?.technology ? skill?.technology : "technology not found"}
-            title="Click on this image to see the full image"
-        />
-    </PhotoView>
-</PhotoProvider>
+                                                    <PhotoProvider>
+                                                        <PhotoView src={skill?.technologyImage ? skill?.technologyImage : "https://i.ibb.co/RSCmwXf/imagenot.jpg"}>
+                                                            <img src={skill?.technologyImage ? skill?.technologyImage : "https://i.ibb.co/RSCmwXf/imagenot.jpg"}
+                                                                className="w-100 projectImage" style={{ height: "250px" }}
+                                                                alt={skill?.technology ? skill?.technology : "technology not found"}
+                                                                title="Click on this image to see the full image"
+                                                            />
+                                                        </PhotoView>
+                                                    </PhotoProvider>
 
-<div className="card-body">
-    <h5 className="card-title"> Technology : {
-        skill?.technology ? skill?.technology : "technology not found"
-    }</h5>
-    <h5 className="card-title"> Experience: {skill?.experience}</h5>
-    <p className="card-text"> Real time experience: {skill?.realTimeExperience?.length > 250 ? skill?.realTimeExperience.slice(0, 250) + "..." : skill?.realTimeExperience}</p>
-    <p className="card-text"> Starting date: {skill?.startingDate ? skill?.startingDate : "starting date not found"}</p>
-    <div className='text-center d-flex justify-content-around mt-5'>
-        <div>
-            {
-                user?.email === "subrota45278@gmail.com" &&
-                <BsFillTrash2Fill style={{ cursor: "pointer" }} className='text-danger  fs-3 fw-bold' title={`Click on this icon to delete your  ${skill?.technology} project data`}
-                    onClick={() => setData(skill)}></BsFillTrash2Fill>
+                                                    <div className="card-body">
+                                                        <h5 className="card-title"> Technology : {
+                                                            skill?.technology ? skill?.technology : "technology not found"
+                                                        }</h5>
+                                                        <h5 className="card-title"> Experience: {skill?.experience}</h5>
+                                                        <p className="card-text"> Real time experience: {skill?.realTimeExperience?.length > 250 ? skill?.realTimeExperience.slice(0, 250) + "..." : skill?.realTimeExperience}</p>
+                                                        <p className="card-text"> Starting date: {skill?.startingDate ? skill?.startingDate : "starting date not found"}</p>
+                                                        <div className='text-center d-flex justify-content-around mt-5'>
+                                                            <div>
+                                                                {
+                                                                    user?.email === "subrota45278@gmail.com" &&
+                                                                    <BsFillTrash2Fill style={{ cursor: "pointer" }} className='text-danger  fs-3 fw-bold' title={`Click on this icon to delete your  ${skill?.technology} project data`}
+                                                                        onClick={() => setData(skill)}></BsFillTrash2Fill>
 
-            }
-        </div>
-        <div>
-            {
-                user?.email === "subrota45278@gmail.com" &&
-                <NavLink to={`/edit-skill/${skill?._id}`} title={`Click on this icon to update your  ${skill?.technology} project data`}>
-                    <BiEditAlt className='text-success fs-3 fw-bold'
-                    ></BiEditAlt>
-                </NavLink>
+                                                                }
+                                                            </div>
+                                                            <div>
+                                                                {
+                                                                    user?.email === "subrota45278@gmail.com" &&
+                                                                    <NavLink to={`/edit-skill/${skill?._id}`} title={`Click on this icon to update your  ${skill?.technology} project data`}>
+                                                                        <BiEditAlt className='text-success fs-3 fw-bold'
+                                                                        ></BiEditAlt>
+                                                                    </NavLink>
 
-            }
-        </div>
-    </div>
-</div>
-</div>
-                                      </>
-                                        </ShowCardAnimated>
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </>
+          
                                     </div>
 
                                 )

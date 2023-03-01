@@ -5,13 +5,14 @@ import { toast } from 'react-toastify';
 import ClipLoader from "react-spinners/ClipLoader";
 import { BsCloudUploadFill } from "react-icons/bs";
 import { AuthProvider } from '../../UserContext/UserContext';
+import { useNavigate } from 'react-router-dom';
 
 const AddNewSkill = () => {
     const [fileName, setFileName] = useState({});
     const [fileStatus, setFileStatus] = useState(false);
     const [registerLoad, setRegisterLoad] = useState(false);
     const {user} = useContext(AuthProvider) ;
-   
+   const navigate = useNavigate() ;
     const onDrop = useCallback(acceptedFiles => {
         // Do something with the files
         setFileName(acceptedFiles[0]);
@@ -57,11 +58,11 @@ const AddNewSkill = () => {
                                 authentication: `Bearer ${localStorage.getItem("portfolio-token")} `
                             },
                             body: JSON.stringify(postData)
-                        })
+                         })
                             .then(res =>  {
-
                                 if (res.status === 403) {
-                                    toast.warning("  😩 😩 You do have not access to manipulate this data. 😩 😩 ");
+                                     toast.warning(" 😩 😩 You do have not access to manipulate this data. 😩 😩 ");
+                                      navigate("/login") ;
                                 } else {
                                     return res.json();
                                 }

@@ -131,16 +131,18 @@ animation: textLine infinite 2s alternate;
     border: none;
   } 
  }
-.skillCard:hover , .hoverEffect:hover{
-box-shadow:  0 0 6px 8px rgba(0, 255, 0, 0.5);
-transition: box-shadow 1s;
+.skillCard{
+box
 }
  .link{
 height: 58px;
 width: 62px;
 background-color: blueviolet
  }
-
+ .hoverEffect:hover{
+ transform: scale(0.9);
+ transition-duration: 2s;
+ }
  .contactInfo ul li {
   list-style-type: none;
   list-style-position: inside;
