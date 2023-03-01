@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import "./Navbar.css" ;
 import { AuthProvider } from '../../UserContext/UserContext';
 const Navbar = () => {
     const { user, signOutUser, setUserData } = useContext(AuthProvider);

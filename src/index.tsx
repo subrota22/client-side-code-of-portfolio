@@ -38,8 +38,7 @@ animation: subrotaPic infinite forwards 1s alternate;
 .subrotaImage:hover{
   transform:rotateX(0deg) rotateY(0deg) scale(0.8);
   transition: transform 1s;
-  border: 5px dotted white;
-  border-top: 5px dotted rgb(13, 180, 166);
+  border: 3px do;
   animation: none;
 }
 @keyframes subrotaPic {
