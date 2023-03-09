@@ -181,8 +181,7 @@ const About = () => {
     return (
         <>
             <Helmet> <title> About me </title></Helmet>
-            <div className='aboutPage'>
-                <div className='text-center fs-2 fw-bold text-info styleHeadOfContent my-5 px-5 py-2 text-uppercase'>
+            <div className='text-center fs-2 fw-bold text-info p-4 rounded mx-auto styleHeadOfContent container my-5 text-uppercase'>
                     {
                         <Typewriter
                             words={['Welcome in ', 'my about ', 'page thanks', 'for your interest', 'to know about me !!']}
@@ -195,6 +194,9 @@ const About = () => {
                         />
                     }
                 </div>
+
+            <div className='aboutPage'>
+               
                 {
                     aboutData?.map(data =>
                         <div className="card  h-auto bg-dark" key={data?._id}>
@@ -222,7 +224,7 @@ const About = () => {
                     )
                 }
             </div>
-{/* Edit about information */}
+        {/* Edit about information */}
             <div className="modal fade" id="aboutModal" tabindex="-2" aria-labelledby="aboutModalLabel" aria-hidden="true">
                 <div className="modal-dialog">
                     <div className="modal-content">
@@ -239,15 +241,12 @@ const About = () => {
 
                                         id="details" className="form-control my-4" placeholder='details description' required />
                                 </div>
-
                                 <div>
                                     <div className="relative  w-full ">
                                         <input type="text" name="name" onChange={handleSubmitedInputData}
                                             defaultValue={info?.name }
                                             id="projectTitle" className="form-control my-4" placeholder='Client side code link' required />
                                     </div>
-
-
                                 </div>
                                 <div>
                                     <div className="relative  w-full ">
@@ -255,12 +254,7 @@ const About = () => {
                                             defaultValue={info?.saveDate }
                                             id="projectTitle" className="form-control my-4" placeholder='Enter your save data' required />
                                     </div>
-
-
                                 </div>
-                                {
-                                    console.log(info?.aboutText)
-                                }
                                 <div>
                                     <div className="relative  w-full ">
                                         <input type="text" name="websiteLink" onChange={handleSubmitedInputData}

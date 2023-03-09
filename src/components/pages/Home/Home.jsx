@@ -24,9 +24,6 @@ const Home = () => {
             <Helmet><title> Home page </title></Helmet>
 
             <HeadSection></HeadSection>
-
-
-
             <SliderCarousel></SliderCarousel>
             <Projects></Projects>
             <Skills></Skills>
@@ -39,7 +36,7 @@ const Home = () => {
                 </div>
                 <div className='w-100 mx-5'>
                     <Wrapper>
-                    <Spline scene="https://prod.spline.design/3SK8XaboD12dLRqV/scene.splinecode" />
+                    <Spline scene="https://prod.spline.design/nGwLL7cjC9USsGoB/scene.splinecode" />
                   </Wrapper>
                 </div>
             </div>
