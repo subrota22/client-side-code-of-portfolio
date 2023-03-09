@@ -121,8 +121,8 @@ export const SliderCarousel = () => {
 
     return (
         <>
-            <div className="my-5">
-                <div className='text-center mx-auto fs-2 fw-bold styleHeadOfContent p-4 rounded-2'>
+            <div className="my-5 ">
+                <div className='text-center mx-auto fs-2  container fw-bold styleHeadOfContent p-4 rounded-2'>
                     {
                         //My best projects that I made in 20/10/2022
                         <Typewriter

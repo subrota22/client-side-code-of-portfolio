@@ -33,7 +33,11 @@ const routes = createBrowserRouter([
     {
         path: "/", element: <MainLayout />, children: [
             {
-                path: "/", element: <Home></Home>
+                path: "/", element: <Home></Home>, children:[
+                    {
+                        path:"/", errorElement:<h2> You have an error </h2>
+                    }
+                ]
             },
             {
                 path: "/singleDetailsData/:id",

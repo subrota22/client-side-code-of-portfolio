@@ -12,7 +12,7 @@ height: 455px;
 border-radius: 20px;
 }
 .skillText{
-animation: skillText infinite forwards 2s alternate;
+animation: skillText 10 forwards 2s alternate;
 }
 @keyframes skillText {
   from{ opacity: 1; } to{opacity: 0.5;}
@@ -24,16 +24,16 @@ font-family: 'Raleway', sans-serif;
 }
 .body::-webkit-scrollbar{
 width: 12px;
-background-color: indigo;
+background-color: #0D1B47;
 }
 .body::-webkit-scrollbar-thumb{
-background-color: darkslategray;
+background-color: #11BD42;
 border-radius: 15px;
 }
 .subrotaImage{
 transform:rotateX(-20deg) rotateY(-20deg);
 margin: 25px 10px;
-animation: subrotaPic infinite forwards 1s alternate;
+animation: subrotaPic 10 forwards 1s alternate;
 }
 .subrotaImage:hover{
   transform:rotateX(0deg) rotateY(0deg) scale(0.8);
@@ -45,6 +45,9 @@ animation: subrotaPic infinite forwards 1s alternate;
 @keyframes subrotaPic {
   from{ box-shadow:  0 0 2px 4px rgba(0, 255, 0, 0.808) ; } to{box-shadow:  0 0 4px 8px rgb(10, 13, 233) ;}
 }
+#time{
+  font-family: 'Roboto', sans-serif;
+}
 .authorImage{
 height: 55px;
 width: 55px;
@@ -52,13 +55,13 @@ border: 2px solid green;
 margin: 12px 0px;
 }
 .downloadIcon{
-animation: downloadIcon infinite  1s alternate-reverse;
+animation: downloadIcon 10  1s alternate-reverse;
 }
 @keyframes downloadIcon {
   from{ transform: translateY(5px); } to{transform: translateY(-5px);}
 }
 .resumeDirection{
-  animation: resumeDirection infinite  1s alternate-reverse;
+  animation: resumeDirection 10  1s alternate-reverse;
 }
 @keyframes resumeDirection {
   from{ transform: translateY(5px); } to{transform: translateY(-5px);}
@@ -110,7 +113,7 @@ visibility: hidden;
 }
 .sendSign{
   visibility: hidden;
-  animation: sendMessage infinite forwards alternate 1s;
+  animation: sendMessage 10 forwards alternate 1s;
 }
 @keyframes sendMessage {
   0%{
@@ -133,4 +136,9 @@ transition: display 2s;
 #deleteUsersButtonShow{
 display: block;
 transition: display 2s;
+}
+
+.spinelStyle{
+  height: 50vh;
+  width: 80%;
 }

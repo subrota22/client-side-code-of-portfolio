@@ -114,17 +114,18 @@ const Skills = () => {
                                 <div className="my-2">
                                     <div className='ms-5'><i className="fa-solid fa-angles-down mx-3 fs-2 fw-bolder my-2 resumeDirection"></i></div>
                                     <NavLink to="/add-new-skill" className="text-decoration-none
-  btn btn-outline-info px-4 py-2 fw-bold text-white hideBtn"> Add-new-skill  <i className="fa-solid fa-arrow-right showDetailsAnimation"></i> </NavLink>
+                                         btn btn-outline-info px-4 py-2 fw-bold text-white hideBtn">
+                                    Add-new-skill  <i className="fa-solid fa-arrow-right showDetailsAnimation"></i> </NavLink>
                                 </div>
                             }
 
 
                             {
                                 skills.map(skill =>
-                                    <div className="col col-12 col-sm-12 col-md-6 col-lg-4 my-3 " key={skill._id}>
+                                    <div className="col col-12 col-sm-12 col-md-6 col-lg-4 my-3 "  key={skill._id} data-aos="zoom-in">
        
                                             <>
-                                                <div className="card skillCard h-100 bg-dark text-white">
+                                                <div className="card skillCard h-100 bg-dark text-white" >
 
                                                     <PhotoProvider>
                                                         <PhotoView src={skill?.technologyImage ? skill?.technologyImage : "https://i.ibb.co/RSCmwXf/imagenot.jpg"}>

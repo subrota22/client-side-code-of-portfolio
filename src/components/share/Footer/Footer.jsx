@@ -4,9 +4,7 @@ const Footer = () => {
     return (
         <>
             
-        <footer data-aos="fade-up" data-aos-duration="2000" data-aos-delay="1000"
-            className="footer text-white fs-2 fw-bold text-center py-5 bg-dark w-100 mt-5">
-
+        <footer data-aos="zoom-in"className="footer text-white fs-2 fw-bold text-center py-5 bg-dark w-100 mt-5">
             <h2> Copy right by <span className="text-success">Subrota chandra sarker</span> 2022 </h2>
 
             <div className="text-center">

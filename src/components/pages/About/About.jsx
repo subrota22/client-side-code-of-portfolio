@@ -8,7 +8,8 @@ import ClipLoader from "react-spinners/ClipLoader";
 import { BsCloudUploadFill } from "react-icons/bs";
 import PageLoad from '../../share/PageLoad/PageLoad';
 import { AuthProvider } from '../../UserContext/UserContext';
-
+import Particles from "react-tsparticles";
+import { loadFull } from "tsparticles";
 const About = () => {
     const [pageLoad, setPageLoad] = useState(true);
     const [aboutData, setAboutData] = useState([]);
@@ -98,6 +99,81 @@ const About = () => {
                 setPageLoad(false);
             });
     }, []);
+    const particlesInit = useCallback(async engine => {
+        await loadFull(engine);
+       }, []);
+       
+       const particlesLoaded = useCallback(async container => {
+           await console.log(container);
+       }, []);
+
+    <Particles
+    id="tsparticles"
+    init={particlesInit}
+    loaded={particlesLoaded}
+    options={{
+        fpsLimit: 80,
+        interactivity: {
+            events: {
+                onHover: {
+                    enable: true,
+                    mode: "repulse",
+                },
+             },
+            modes: {
+                push: {
+                    quantity: 8,
+                },
+                repulse: {
+                    distance: 300,
+                    duration: 2000,
+                },
+            },
+        },
+        particles: {
+            color: {
+                value: "#E30952",
+            },
+            links: {
+                color: "#0F63B2",
+                distance: 150,
+                enable: true,
+                opacity: 0.5,
+                width: 2,
+            },
+            collisions: {
+                enable: true,
+            },
+            move: {
+                directions: "none",
+                enable: true,
+                outModes: {
+                    default: "bounce",
+                },
+                random: true ,
+                speed: 2.6,
+                straight: false,
+            },
+            number: {
+                density: {
+                    enable: true,
+                    area: 800,
+                },
+                value: 80,
+            },
+            opacity: {
+                value: 0.5,
+            },
+            shape: {
+                type: "circle",
+            },
+            size: {
+                value: { min: 1, max: 5 },
+            },
+        },
+         detectRetina: true,
+    }}
+/>
 
     if (pageLoad) {
         return <PageLoad></PageLoad>

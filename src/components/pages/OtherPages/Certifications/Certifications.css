@@ -41,7 +41,7 @@ transform: scale(1.5);
 }
 
 .certificateBg{
-    animation: certificateBackground infinite 6s alternate linear;
+    animation: certificateBackground 10 6s alternate linear;
   }
   @keyframes certificateBackground {
     0%{

@@ -104,7 +104,7 @@ const Projects = () => {
                         <div className="row">
                             {
                                 projects.map(project =>
-                                    <div className="col col-12 col-md-6   my-3" key={project._id}>
+                                    <div className="col col-12 col-md-6   my-3" key={project._id} data-aos="fade-up">
                                         <div className="bg-dark text-white rounded-2 hoverEffect h-100">
                                             <PhotoProvider>
                                                 <PhotoView src={project?.projectImage ? project?.projectImage : "https://i.ibb.co/RSCmwXf/projectImagenot.jpg"}>

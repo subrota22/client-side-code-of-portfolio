@@ -9,7 +9,7 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+    animation: App-logo-spin 10 20s linear;
   }
 }
 
@@ -32,135 +32,148 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
 
-.styleHeadOfContent{
- transform: rotateX(-2deg) rotateY(42deg);
- margin: 60px 0px;
- /* background-color: rgba(48, 4, 21, 0.7); */
- box-shadow: 0 0 8px 8px rgba(192, 7, 78, 0.6);
- width: 90%;
- color: white;
-}
-.styleHeadOfContent:hover{
-  transform: rotateX(0deg) rotateY(0deg);
+.styleHeadOfContent {
+  margin: 60px 0px;
   box-shadow: 0 0 8px 8px rgba(6, 68, 184, 0.6);
-  color: lime;
-  transition-duration: 1s;
-  animation: spinHead 2 linear forwards 6s alternate;
-  cursor:pointer;
+  width: 100%;
+  color: white;
 }
-@keyframes spinHead {
-  0%{
-    transform: rotate(0deg) scale(0.8);
-  } 100%{
-    transform: rotate(380deg) scale(1)
+
+.styleHeadOfContent:hover {
+  transform: rotateX(0deg) rotateY(0deg);
+  box-shadow: 0 0 5px 6px rgba(6, 235, 63, 0.5),
+    0 0 6px 7px rgba(6, 235, 63, 0.5);
+  transition-duration: 1s;
+  cursor: pointer;
+}
+
+
+.logo {
+  animation: logoSpin 10 6s forwards linear;
+  height: 40%;
+  width: 40%;
+}
+
+@keyframes logoSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
   }
 }
 
-.logo{
-animation: logoSpin infinite 6s forwards linear;
-height: 40%;
-width: 40%;
+.dflex {
+  display: flex;
+  justify-content: space-around;
+  font-size: 18px;
+  font-weight: bolder;
+  width: 100%;
 }
-@keyframes logoSpin {
- 0%{
-  transform:rotate(0deg);
- }  100%{
-  transform:rotate(360deg);
- } 
+
+.fline,
+.sline {
+  background-color: white;
+  border: 2px solid white;
+  border-radius: 5px;
+  width: 32%;
+  height: 5px;
+  margin-top: 10px;
+  animation: textLine 10 2s alternate;
 }
-.dflex{
-display: flex;
-justify-content: space-around;
-font-size: 18px;
-font-weight: bolder;
-width: 100%;
-}
-.fline , .sline{
-background-color: white;
-border: 2px solid white;
-border-radius: 5px;
-width:32%;
-height: 5px;
-margin-top: 10px;
-animation: textLine infinite 2s alternate;
-}
+
 @keyframes textLine {
-  0%{
+  0% {
     background-color: rgb(251, 249, 255);
     border: 2px solid rgb(255, 255, 255);
-  }  100%{
+  }
+
+  100% {
     background-color: rgb(33, 4, 100);
     border: 2px solid rgb(33, 4, 100);
-  } 
- }
- @media screen and (max-width:800px) {
-  .dflex{
+  }
+}
+
+@media screen and (max-width:800px) {
+  .dflex {
     display: flex;
     justify-content: space-around;
     font-size: 18px;
     font-weight: bolder;
     flex-direction: column-reverse;
     width: 100%;
-    }
- }
+  }
+}
 
- .activeButton{
- box-shadow:  0 0 6px 6px rgba(14, 202, 162, 0.6);
- color: white;
- background-color: rgb(155, 22, 84);
- border: none;
- border-radius: 8px
- }
- .activeButton:hover{
-  animation: activeButton infinite 0.7s alternate;
- }
+.activeButton {
+  box-shadow: 0 0 6px 6px rgba(14, 202, 162, 0.6);
+  color: white;
+  background-color: rgb(155, 22, 84);
+  border: none;
+  border-radius: 8px
+}
 
- @keyframes activeButton {
-  0%{
+.activeButton:hover {
+  animation: activeButton 10 0.7s alternate;
+}
+
+@keyframes activeButton {
+  0% {
     background-color: rgba(184, 10, 126, 0.6);
     border-radius: 8px;
     border: none;
-  }  100%{
-    background-color:  rgba(7, 45, 170, 0.6);
+  }
+
+  100% {
+    background-color: rgba(7, 45, 170, 0.6);
     border-radius: 8px;
     border: none;
-  } 
- }
-.skillCard:hover , .hoverEffect:hover{
-box-shadow:  0 0 6px 8px rgba(0, 255, 0, 0.5);
-transition: box-shadow 1s;
+  }
 }
- .link{
-height: 58px;
-width: 62px;
-background-color: blueviolet
- }
 
- .contactInfo ul li {
+.skillCard:hover,
+.hoverEffect:hover {
+  box-shadow: 0 0 4px 5px rgba(29, 10, 139, 0.705);
+  cursor: pointer;
+  transition: box-shadow 1s;
+}
+
+.link {
+  height: 58px;
+  width: 62px;
+  background-color: blueviolet
+}
+
+.contactInfo ul li {
   list-style-type: none;
   list-style-position: inside;
-  margin: 14px 10px ;
+  margin: 14px 10px;
   font-size: 20px;
   font-weight: bolder;
- }
- .contactInfo ul li  a{
+}
+
+.contactInfo ul li a {
   text-decoration: none;
   color: white;
- }
- .contactInfo ul li  span{
-  height:45px;
+}
+
+.contactInfo ul li span {
+  height: 45px;
   width: 45px;
   border-radius: 50%;
   background-color: #EE0BB7;
-  padding:6px 8px;
+  padding: 6px 8px;
   margin: 10px;
- }
- .contactInfo ul li:hover >  span{
-  background-color:#0B68EE;
+}
+
+.contactInfo ul li:hover>span {
+  background-color: #0B68EE;
   transition-duration: 1s;
- }
+}

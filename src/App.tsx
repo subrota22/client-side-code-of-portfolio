@@ -9,7 +9,7 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+    animation: App-logo-spin 10 20s linear;
   }
 }
 
@@ -62,7 +62,7 @@
 }
 
 .logo{
-animation: logoSpin infinite 6s forwards linear;
+animation: logoSpin 10 6s forwards linear;
 height: 40%;
 width: 40%;
 }
@@ -87,7 +87,7 @@ border-radius: 5px;
 width:32%;
 height: 5px;
 margin-top: 10px;
-animation: textLine infinite 2s alternate;
+animation: textLine 10 2s alternate;
 }
 @keyframes textLine {
   0%{
@@ -117,7 +117,7 @@ animation: textLine infinite 2s alternate;
  border-radius: 8px
  }
  .activeButton:hover{
-  animation: activeButton infinite 0.7s alternate;
+  animation: activeButton 10 0.7s alternate;
  }
 
  @keyframes activeButton {
