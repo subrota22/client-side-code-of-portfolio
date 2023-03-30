@@ -1,9 +1,14 @@
 import React from 'react';
-
+import MessengerCustomerChat from 'react-messenger-customer-chat';
+ 
 const Footer = () => {
     return (
         <>
-            
+        <h2> Hello </h2>
+      <MessengerCustomerChat
+    pageId="subrotachandra32"
+    appId="954140015935224"
+  />,
         <footer data-aos="zoom-in"className="footer text-white fs-2 fw-bold text-center py-5 bg-dark w-100 mt-5">
             <h2> Copy right by <span className="text-success">Subrota chandra sarker</span> 2022 </h2>
 
