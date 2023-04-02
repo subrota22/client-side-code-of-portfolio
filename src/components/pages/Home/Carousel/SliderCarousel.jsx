@@ -7,6 +7,7 @@ import PageLoad from '../../../share/PageLoad/PageLoad';
 export const SliderCarousel = () => {
     const [projects, setProjects] = useState([]);
     const [pageLoad, setPageLoad] = useState(true);
+    
     const sliderBoxStyle = {
         backgroundColor: "#030537",
         color: "white",
