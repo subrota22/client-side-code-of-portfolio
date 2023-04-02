@@ -24,7 +24,6 @@ React.useEffect(() => {
   return (
     <>
         <ToastContainer />
-  
 
 <CustomCursor
       targets={['.nav-link' , '.hideBtn' , ".cursorEffect"]}
