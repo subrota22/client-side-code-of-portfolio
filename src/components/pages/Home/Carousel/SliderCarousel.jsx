@@ -19,12 +19,6 @@ export const SliderCarousel = () => {
         duration: "2s"
     };
 
-    let accEleSetting;
-
-    let mobileRegx = /Mobi|Tablet|iPad|iPhone/;
-    if (mobileRegx.test(navigator.userAgent)) {
-        accEleSetting.button = false;
-    }
 
     let buttonSetting = {
         placeOn: "middle-inside",
